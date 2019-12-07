@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  get 'users/show'
-
+  
   devise_for :users
-  root 'home_pages#index'
-  get 'home_pages/index'
+  devise_scope :user do
+    root :to => "devise/sessions#new"
+  end
+  get 'home_pages/index' => 'home_pages#index'
   resources :users
+  resources :posts
+  
 end

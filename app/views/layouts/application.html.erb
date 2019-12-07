@@ -11,9 +11,11 @@
   <body>
     
     <%# アラート機能 #%>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% flash.each do  |message_type, message| %>
+        <div class = "alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
     
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
