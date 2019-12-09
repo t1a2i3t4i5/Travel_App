@@ -1,0 +1,2 @@
+class Ken < ApplicationRecord
+end
