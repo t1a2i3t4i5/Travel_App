@@ -5,4 +5,5 @@ class HomePagesController < ApplicationController
       @posts = current_user.posts.all
     end
   end
+  
 end
