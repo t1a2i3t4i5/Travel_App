@@ -1,4 +1,3 @@
-<h2> 現在 <%= current_user.name %> さんがログインしています </h2>
 <!--Japanmapのパーシャル -->
 <%= render 'japanmap' %>
 
@@ -7,10 +6,3 @@
   <%= f.submit "post" %>
 <% end %>
 
-<% @posts.each do |post| %>
-    <p><%= post.content %>
-<% end %>
-  
-
-<%= link_to "ポストを作成する" , new_post_path %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->

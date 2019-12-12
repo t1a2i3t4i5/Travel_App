@@ -16,10 +16,10 @@ class PostsController < ApplicationController
         @post = current_user.posts.build(post_params)
         if @post.save
             flash[:success] = "ポストが作成されました"
-            redirect_to user_path(current_user.id)
+            redirect_to home_pages_index_url
         else 
             flash[:danger] = "ポストが作成されませんでした"
-            redirect_to root_url
+            redirect_to home_pages_index_url
         end
     end
     
