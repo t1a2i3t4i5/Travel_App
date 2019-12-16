@@ -29,12 +29,12 @@
         width: 730,
         selection: "area",
         areas: areas,
-        backgroundColor : "#dcdcdc",
-        borderLineColor: "#f2fcff",
+        backgroundColor : "white",
+        borderLineColor: "black",
         borderLineWidth : 0.25,
         lineColor : "#a0a0a0",
         lineWidth: 1,
-        drawsBoxLine: true,
+        drawsBoxLine: false,
         showsPrefectureName: false,
         prefectureNameType: "short",
         movesIslands : true,
@@ -52,11 +52,16 @@
  </script>
  
 <div id="map-container">    
-  <div class="uk-position-large uk-position-center">
+  <div class="form">
     <p>今は何も選択してないよ</p>
     <%= form_for(@user_ken) do |f| %>
       <%= f.hidden_field :ken_id, value: "hoge" , class:"ken"%>
       <%= f.submit value: "hoge" , class:"uk-button uk-button-primary" %>
+    <% end %>
+    
+    <%= form_for(@post) do |f| %>
+      <%= f.text_area :content , placeholder: "Compose new micropost..." %>
+      <%= f.submit "post" %>
     <% end %>
   </div>
 </div>
