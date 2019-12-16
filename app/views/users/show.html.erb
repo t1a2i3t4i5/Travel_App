@@ -1,3 +1,16 @@
-<% @posts.each do |post| %>
-    <p><%= post.content %>
-<% end %>
+<table class="uk-table uk-table-hover uk-table-divider">
+    <thead>
+        <tr>
+            <th>都道府県名</th>
+            <th>content</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @posts.each do | post | %>
+        <tr>
+            <td><%= search_kenname post %></td>
+            <td><%= post.content %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
