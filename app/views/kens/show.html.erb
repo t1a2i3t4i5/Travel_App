@@ -1,0 +1,19 @@
+<h1><%= @ken.name %>のページです</h1>
+
+<h2>投稿</h2>
+<table class="uk-table uk-table-hover uk-table-divider">
+    <thead>
+        <tr>
+            <th>都道府県名</th>
+            <th>content</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @posts.each do | post | %>
+        <tr>
+          <td><%= link_to post.user.name , user_path(post.user_id) %></td>
+          <td><%= post.content %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

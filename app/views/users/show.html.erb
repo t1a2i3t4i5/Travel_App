@@ -1,3 +1,6 @@
+<h1><%= @user.name %>さんのページです</h1>
+
+<h2>投稿</h2>
 <table class="uk-table uk-table-hover uk-table-divider">
     <thead>
         <tr>
@@ -8,7 +11,7 @@
     <tbody>
         <% @posts.each do | post | %>
         <tr>
-            <td><%= search_kenname post %></td>
+            <td><%= link_to search_kenname(post) , ken_path(post.ken_id) %></td>
             <td><%= post.content %></td>
         </tr>
         <% end %>

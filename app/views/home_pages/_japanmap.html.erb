@@ -44,8 +44,11 @@
         {
 				  $('.kenid').val(data.code);
 				  $('.kenname').val(data.name);
-				  $('p').text(data.name + "を選択してます");
 				  $('.uk-button').val(data.name + "を行ったことにする");
+				  $('a').attr("href", "/kens/" + data.code);
+				  $('.uk-bold').text(data.name + "に移動");
+				  
+				  
         }
       });
   });
@@ -65,6 +68,8 @@
       <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid"%>
       <%= f.submit "post" %>
     <% end %>
+    
+    <a href="/home_pages/index"><p class="uk-bold">hoge</p></a>
     
     
   </div>

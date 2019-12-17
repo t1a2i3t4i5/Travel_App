@@ -27,7 +27,8 @@
         <div class="uk-navbar-dropdown">
         <ul class="uk-nav uk-navbar-dropdown-nav">
           <% if user_signed_in? %>
-            <li><%= link_to "plofile", current_user %></li>
+            <li><%= link_to "編集", edit_user_registration_path(current_user) %></li>
+            <li><%= link_to "profile", user_path(current_user) %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>

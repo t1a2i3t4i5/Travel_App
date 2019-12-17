@@ -4,9 +4,9 @@ module UsersHelper
     def search_kenname(post)
       @ken = Ken.find_by(id: post.ken_id)
       if @ken
-          return @ken.name
+        return @ken.name
       else
-          return "県名がなかったね"
+        return "県名がなかったね"
       end
     end
     
