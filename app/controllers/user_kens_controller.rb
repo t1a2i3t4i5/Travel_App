@@ -1,4 +1,6 @@
 class UserKensController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @user_ken = current_user.user_ken.build(ken_id:params[:user_ken][:ken_id])
     if @user_ken.save

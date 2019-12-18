@@ -1,7 +1,11 @@
 <nav class="uk-navbar-container" uk-navbar>
   <div class="uk-navbar-left">
       <ul class="uk-navbar-nav">
-        <li class="uk-active"><%= link_to "home", root_path %></li>
+        <li class="uk-active">
+          <%= link_to(home_pages_index_path) do %>
+                <span uk-icon="home"></span> 
+          <% end %>
+        </li>
       </ul>
   </div>
   
