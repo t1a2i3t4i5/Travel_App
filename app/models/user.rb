@@ -1,8 +1,38 @@
 class User < ApplicationRecord
+  #画像投稿の時に必要
   mount_uploader :image, ImageUploader
-  has_many  :posts , dependent: :destroy#ポストモデルと関連付けている
+  
+  #ポストモデルと関連付けている
+  has_many  :posts , dependent: :destroy
+  
+  #ユーザーが行った県の時に必要
   has_many  :user_ken, dependent: :destroy
+  
+  #フォロー機能
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :followers, through: :reverse_of_relationships, source: :user
+  
+  #deviseの設定
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
+  end
+
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(other_user)
+    self.followings.include?(other_user)
+  end
+
   
 end

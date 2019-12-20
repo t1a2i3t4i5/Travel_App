@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :kens , only: :show
   resource  :user_kens , only: [:destroy , :create]
+  resources :relationships, only: [:create, :destroy]
   
 end
