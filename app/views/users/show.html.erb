@@ -1,4 +1,4 @@
-<h1><%= @user.name %>さんのページ</h1>
+<h1><%= image_tag @user.image.thumb100.url , class:"uk-border-pill" %><%= @user.name %>さんのページ</h1>
 <%= visited_ken_count(@user) %>/47
 <script>
 
@@ -15,7 +15,7 @@
             name: kens[kencode], 
             color:
                   <% if @user.user_ken.find_by(ken_id: count) %>
-                    "red", 
+                    "pink", 
                   <% else %>
                     "white",
                   <% end %>
@@ -25,7 +25,7 @@
          kencode++;
    <% end %>
 
-    $(".map-container").japanMap
+    $("#map-container").japanMap
     ({
         width: 1000,
         selection: "area",
@@ -41,6 +41,7 @@
         movesIslands : true,
         fontSize : 11,
         fontShadowColor : "#fff",
+        
       });
   });
 
@@ -48,6 +49,7 @@
 
 <div class="uk-grid">
   <div class="map-container uk-width-1-2">
+    <div id="map-container"></div>
   </div>
   
     <div class="post uk-width-1-2">
@@ -57,6 +59,7 @@
           <tr>
             <th>都道府県名</th>
             <th>content</th>
+            <th>画像</th>
             <th>投稿日時</th>
           </tr>
         </thead>
@@ -65,6 +68,7 @@
               <tr>
                 <td><%= link_to search_kenname(post) , ken_path(post.ken_id) %></td>
                 <td><%= post.content %></td>
+                <td><%= image_tag post.image.url if post.image? %></td>
                 <td><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></td>
                 <% if current_user == @user %>
                   <td>   

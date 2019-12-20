@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module TravelApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]#画像をアップロードするときに必要です
     config.load_defaults 5.1
     config.i18n.default_locale = :ja
 
@@ -16,5 +17,6 @@ module TravelApp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Tokyo'
+  
   end
 end

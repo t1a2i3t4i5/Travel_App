@@ -16,8 +16,6 @@
 //= require jcanvas
 //= require_tree .
 
-
-
     /*var areas = [
                     {code : 1, name: "北海道", color:
                     <% if current_user.user_ken.find_by(ken_id:1) %>

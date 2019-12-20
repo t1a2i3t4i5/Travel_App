@@ -14,7 +14,7 @@
             name: kens[kencode], 
             color:
                   <% if current_user.user_ken.find_by(ken_id: count) %>
-                    "red", 
+                    "pink", 
                   <% else %>
                     "white",
                   <% end %>
@@ -44,28 +44,30 @@
         {
 				  $('.kenid').val(data.code);
 				  $('.uk-button').val(data.name + "を行ったことにする");
-				  $('a').attr("href", "/kens/" + data.code);
+				  $('.link').attr("href", "/kens/" + data.code);
 				  $('.uk-bold').text(data.name + "に移動");
 				  $("textarea").attr('placeholder', data.name + "について書いて！！");
-				  
-				  
         }
       });
   });
 
  </script>
-<div class="uk-grid">
-  <div class="map-container uk-width-1-2">    
+<div class="uk-grid" uk-grid>
+  <div class="map-container uk-width-1-2">
   </div>
   
   <div class="form uk-width-1-2">
     
     <%= form_for(@post) do |f| %>
-      <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea" %>
       <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid"%>
+      
+      <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea" %>
+      
+      <%= f.file_field :image , class: "image" %>
+      
       <%= f.submit "post" , class:"uk-button" %>
     <% end %>
     
-    <a href="/home_pages/index"><p class="uk-bold">hoge</p></a>
+    <a href="/home_pages/index" class="link"><p class="uk-bold">hoge</p></a>
   </div>
 </div>

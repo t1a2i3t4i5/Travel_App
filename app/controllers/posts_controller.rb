@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   private
   
   def post_params 
-    params.require(:post).permit(:content , :ken_id)
+    params.require(:post).permit(:content , :ken_id , :image)
   end
   
   def user_ken_params
