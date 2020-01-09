@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = current_user.posts.build(ken_id:params[:post][:ken_id] , content:params[:post][:content])
+    @post = current_user.posts.build(ken_id:params[:post][:ken_id] , content:params[:post][:content] , image:params[:post][:image])
     @user_ken = current_user.user_ken.build(ken_id:params[:post][:ken_id])
     
     if @post.save && @user_ken.save
