@@ -6,6 +6,7 @@ class HomePagesController < ApplicationController
     if current_user
       @posts = current_user.posts.all
     end
+    @like = Like.new
   end
   
 end

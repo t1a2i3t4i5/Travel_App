@@ -1,0 +1,9 @@
+<% if current_user.already_liked?(post) %>
+  <%= link_to post_like_path(post) , method: :delete do %>
+    <span uk-icon="unlock"><%= post.likes.count %></span> 
+  <% end %>
+<% else %>
+  <%= link_to post_likes_path(post) , method: :post do %>
+    <span uk-icon="lock"><%= post.likes.count %></span> 
+  <% end %>
+<% end %>

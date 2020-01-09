@@ -15,13 +15,13 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = current_user.posts.build(post_params)
-    @user_ken = current_user.user_ken.build(user_ken_params)
+    @post = current_user.posts.build(ken_id:params[:post][:ken_id] , content:params[:post][:content])
+    @user_ken = current_user.user_ken.build(ken_id:params[:post][:ken_id])
     
     if @post.save && @user_ken.save
       flash[:success] = "ポストが作成され行った県状態にしました"
       redirect_to ken_path(@post.ken_id)
-    else 
+    else
       flash[:danger] = "ポストが作成されませんでした"
       redirect_to home_pages_index_url
     end
@@ -36,14 +36,4 @@ class PostsController < ApplicationController
   end
   
   
-  private
-  
-  def post_params 
-    params.require(:post).permit(:content , :ken_id , :image)
-  end
-  
-  def user_ken_params
-    params.require(:post).permit(:ken_id)
-  end
-    
 end

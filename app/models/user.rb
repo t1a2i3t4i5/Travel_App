@@ -8,6 +8,11 @@ class User < ApplicationRecord
   #ユーザーが行った県の時に必要
   has_many  :user_ken, dependent: :destroy
   
+  #いいね機能の時の関連付け
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+  
   #フォロー機能
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
@@ -33,6 +38,10 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
-
+  
+  #すでにいいねしているかの判定
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
   
 end

@@ -1,30 +1,4 @@
 <h1><%= @ken.name %>のページです</h1>
 
 <h2>投稿</h2>
-<table class="uk-table uk-table-hover uk-table-divider">
-    <thead>
-        <tr>
-            <th>都道府県名</th>
-            <th>content</th>
-            <th>画像</th>
-            <th>投稿日時</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @posts.each do | post | %>
-        <tr>
-          <td><%= link_to post.user.name , user_path(post.user_id) %></td>
-          <td><%= post.content %></td>
-          <td><%= image_tag post.image.url if post.image? %></td>
-          <td><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-          <% if current_user.id == post.user_id %>
-            <td>   
-              <%= link_to(post,{method:"delete"}) do %>
-                <span uk-icon="trash"></span> 
-              <% end %>
-            </td>
-          <% end %>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<%= render 'posts/post' , object: @posts %>

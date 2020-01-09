@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   end
   get 'home_pages/index' => 'home_pages#index'
   resources :users
-  resources :posts
-  resources :kens , only: :show
-  resource  :user_kens , only: [:destroy , :create]
-  resources :relationships, only: [:create, :destroy]
+    
+
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+  end
   
+  resources :kens ,           only: :show
+  resources :relationships,   only: [:create, :destroy]
+  resource  :user_kens ,      only: [:destroy , :create]
 end
