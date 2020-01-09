@@ -13,7 +13,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'rmagick'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
