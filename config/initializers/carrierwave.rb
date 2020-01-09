@@ -6,6 +6,6 @@ CarrierWave.configure do |config|
     region: 'ap-northeast-1'
   }
 
-  config.fog_directory  = 'rails-photo-123'
+  config.fog_directory  = 'travelapp1998'
   config.cache_storage = :fog
 end
