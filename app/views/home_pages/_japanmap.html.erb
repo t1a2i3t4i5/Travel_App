@@ -53,8 +53,7 @@
 
  </script>
 <div class="uk-grid" uk-grid>
-  <div class="map-container uk-width-1-2">
-  </div>
+  <div class="map-container uk-width-1-2"></div>
   
   <div class="form uk-width-1-2">
     
@@ -63,11 +62,16 @@
       
       <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea" %>
       
-      <%= f.file_field :image , class: "image" %>
+      <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"form-control" %>
+      
+      
+      <%= f.file_field :image %>
       
       <%= f.submit "post" , class:"uk-button" %>
     <% end %>
     
-    <a href="/home_pages/index" class="link"><p class="uk-bold">hoge</p></a>
   </div>
+    
+    <a href="/home_pages/index" class="link"><p class="uk-bold">hoge</p></a>
+
 </div>

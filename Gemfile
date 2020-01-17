@@ -12,10 +12,10 @@ gem 'jbuilder',     '2.7.0'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'carrierwave'
+gem 'carrierwave' 
 gem 'fog-aws'
 gem 'rmagick'
-
+gem 'acts-as-taggable-on', '~> 6.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

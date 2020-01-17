@@ -38,6 +38,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :thumb100 do
     process :resize_to_limit => [100, 100]
   end
+  
+  version :thumb50 do
+    process :resize_to_limit => [50, 50]
+  end
  
   version :thumb30 do
     process :resize_to_limit => [30, 30]
@@ -60,6 +64,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
  
   protected
+  
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)

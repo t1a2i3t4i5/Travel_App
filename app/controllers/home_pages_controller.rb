@@ -1,11 +1,9 @@
 class HomePagesController < ApplicationController
+  before_action:authenticate_user!
   
   def index
     @post = Post.new
     @user_ken = UserKen.new
-    if current_user
-      @posts = current_user.posts.all
-    end
     @like = Like.new
   end
   

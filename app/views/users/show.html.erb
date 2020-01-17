@@ -1,22 +1,3 @@
-<h1><%= image_tag @user.image.thumb100.url , class:"uk-border-pill" %><%= @user.name %>さんのページ</h1>
-<%= render 'relationships/follow', user: @user %>
-
-<button uk-toggle="target: #following">フォロー <%= @FollowingCount %></button>
-<div id="following">
-  <% @following.each do |user| %>
-    <%= link_to user.name , user_path(user.id) %>
-  <% end %>
-</div>
-
-
-<button uk-toggle="target: #followes">フォロワー <%= @FollowesCount %></button>
-  <div id="followes">
-    <% @followes.each do |user| %>
-      <%= link_to user.name , user_path(user.id) %>
-    <% end %>
-  </div>
-
-<%= visited_ken_count(@user) %>/47
 <script>
 
   $(function()
@@ -64,6 +45,33 @@
 
 </script>
 
+<h1><%= image_tag @user.image.thumb50.url %><%= @user.name %>さんのページ</h1>
+<%= render 'relationships/follow', user: @user %>
+
+<button uk-toggle="target: #following">フォロー <%= @FollowingCount %></button>
+<div id="following">
+  <% @following.each do |user| %>
+    <%= link_to user.name , user_path(user.id) %>
+  <% end %>
+</div>
+
+
+<button uk-toggle="target: #followes">フォロワー <%= @FollowesCount %></button>
+  <div id="followes">
+    <% @followes.each do |user| %>
+      <%= link_to user.name , user_path(user.id) %>
+    <% end %>
+  </div>
+
+<%= visited_ken_count(@user) %>/47
+
+
+
+
+
+
+
+
 <div class="uk-grid">
   <div class="map-container uk-width-1-2">
     <div id="map-container"></div>
@@ -87,7 +95,7 @@
         <li class="uk-section-xsmall">
           <div class="uk-overflow-auto">
             <div class="uk-padding">
-              <%= render 'posts/post' , object: @user.liked_posts %>
+              <%= render 'posts/post' , object: @user_liked_posts %>
             </div>
           </div>
         </li>
