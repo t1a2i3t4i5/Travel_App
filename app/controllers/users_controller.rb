@@ -6,8 +6,6 @@ class UsersController < ApplicationController
     @post = Post.new
     @posts = @user.posts.all.order(created_at: :desc)
     @user_liked_posts =  @user.liked_posts.order(created_at: :desc)
-    @FollowingCount = @user.followings.all.count
-    @FollowesCount = @user.followers.all.count
     @following = @user.followings.all
     @followes = @user.followers.all
   end
@@ -26,5 +24,21 @@ class UsersController < ApplicationController
     flash[:success] = "すべての都道府県を行ったことない状態にしたぜ"
     redirect_to edit_user_registration_url
   end
+  
+  
+  def following
+    @title = "のフォロー一覧"
+    @user  = User.find(params[:id])
+    @users = @user.followings.all
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "のフォロワー一覧"
+    @user  = User.find(params[:id])
+    @users = @user.followers.all
+    render 'show_follow'
+  end
+
   
 end

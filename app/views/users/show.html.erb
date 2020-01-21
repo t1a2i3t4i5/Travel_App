@@ -48,20 +48,14 @@
 <h1><%= image_tag @user.image.thumb50.url %><%= @user.name %>さんのページ</h1>
 <%= render 'relationships/follow', user: @user %>
 
-<button uk-toggle="target: #following">フォロー <%= @FollowingCount %></button>
-<div id="following">
-  <% @following.each do |user| %>
-    <%= link_to user.name , user_path(user.id) %>
-  <% end %>
-</div>
+<%= link_to following_user_path, class:"uk-button uk-button-text" do %>
+  フォロー<%= @user.followings.count %>
+<% end %>
 
+<%= link_to followers_user_path, class:"uk-button uk-button-text" do %>
+  フォロワー<%= @user.followers.count %>
+<% end %>
 
-<button uk-toggle="target: #followes">フォロワー <%= @FollowesCount %></button>
-  <div id="followes">
-    <% @followes.each do |user| %>
-      <%= link_to user.name , user_path(user.id) %>
-    <% end %>
-  </div>
 
 <%= visited_ken_count(@user) %>/47
 

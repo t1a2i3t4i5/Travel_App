@@ -4,12 +4,21 @@ Rails.application.routes.draw do
   devise_scope :user do
     root :to => "devise/sessions#new"
   end
+  
   get 'home_pages/index' => 'home_pages#index'
+  
   resources :users do
+    
     collection do
-      delete :prefecture_reset
-      delete :posts_reset
+      #/users/prefecture_reset
+      delete :prefecture_reset, :posts_reset
     end
+    
+    member do
+      # /users/:id/ ...
+      get :following, :followers
+    end
+    
   end
   
   get 'tags/show' => 'tags#show'

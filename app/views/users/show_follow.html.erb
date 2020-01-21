@@ -1,0 +1,31 @@
+<h1 class=".uk-align-center"><%= @user.name %> <%= @title %></h1>
+<% if @users.any? %>
+  <% @users.each do | user | %>
+    <article class="uk-comment">
+      <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+          <%= link_to user do %>
+            <%= image_tag user.image.url, height:'80px', width:'80px' %>
+          <% end %>
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset">
+            <%= link_to user.name, user, class:"uk-link-heading" %>
+          </h4>
+          <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+            <li>
+              <%= render 'relationships/follow', user: user %>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <div class="uk-comment-body">
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      </div>
+    </article>
+    <hr class="uk-divider-icon">
+  <% end %>
+<% else %>
+  <p>ひとりもいないね</p>
+
+<% end %>

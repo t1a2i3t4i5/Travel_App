@@ -7,7 +7,7 @@ if Rails.env.production? #本番環境の時にifに入ります。
       :aws_secret_access_key => ENV['S3_SECRET_KEY']
     }
   
-    config.fog_directory  = 'travelapp1998'
+    config.fog_directory  =  ENV['S3_BUCKET']
     config.cache_storage = :fog
   end
 end
