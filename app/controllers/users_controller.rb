@@ -12,4 +12,19 @@ class UsersController < ApplicationController
     @followes = @user.followers.all
   end
   
+  
+  #投稿を全部削除する
+  def posts_reset
+    current_user.posts.destroy_all
+    flash[:success] = "投稿全部削除したぜ"
+    redirect_to edit_user_registration_url
+  end
+  
+  #すべての県を行ったことない状態にする
+  def prefecture_reset
+    current_user.user_ken.destroy_all
+    flash[:success] = "すべての都道府県を行ったことない状態にしたぜ"
+    redirect_to edit_user_registration_url
+  end
+  
 end

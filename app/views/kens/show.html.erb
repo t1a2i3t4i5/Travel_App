@@ -1,6 +1,10 @@
 <h1><%= @ken.name %>のページです</h1>
 
-<h2>投稿</h2>
+<% if visited_ken?(current_user.id, @ken.id) %>
+<%= link_to "行ってない県状態にする", user_ken_path(@user_ken, ken_id: @ken.id), method: :delete %>
+<% end %>
+
 <div class="uk-padding">
   <%= render 'posts/post' , object: @posts %>
 </div>
+

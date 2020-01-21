@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     root :to => "devise/sessions#new"
   end
   get 'home_pages/index' => 'home_pages#index'
-  resources :users
+  resources :users do
+    collection do
+      delete :prefecture_reset
+      delete :posts_reset
+    end
+  end
   
   get 'tags/show' => 'tags#show'
 
@@ -15,6 +20,6 @@ Rails.application.routes.draw do
   
   resources :kens ,           only: :show
   resources :relationships,   only: [:create, :destroy]
-  resource  :user_kens ,      only: [:destroy , :create]
+  resources :user_kens ,      only: [:create, :destroy]
   
 end

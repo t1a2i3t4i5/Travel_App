@@ -9,8 +9,11 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @user_ken = current_user.user_ken.build(ken_id:params[:post][:ken_id])
 
-    if @post.save && @user_ken.save
-      flash[:success] = "ポストが作成され行った県状態にしました"
+    if @user_ken.save && @post.save
+        flash[:success] = "ポストが作成され行った県状態にしました"
+        redirect_to ken_path(@post.ken_id)
+    elsif (@user_ken.save == false) && @post.save
+      flash[:success] = "行ったことある県だからポストだけ作成したよ"
       redirect_to ken_path(@post.ken_id)
     else
       flash[:danger] = "ポストが作成されませんでした"
