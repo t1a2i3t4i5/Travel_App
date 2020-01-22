@@ -45,8 +45,14 @@
 
 </script>
 
+
 <h1><%= image_tag @user.image.thumb50.url %><%= @user.name %>さんのページ</h1>
 <%= render 'relationships/follow', user: @user %>
+
+
+<%= @user.introduction %>
+
+<br />
 
 <%= link_to following_user_path, class:"uk-button uk-button-text" do %>
   フォロー<%= @user.followings.count %>
@@ -56,6 +62,7 @@
   フォロワー<%= @user.followers.count %>
 <% end %>
 
+<br />
 
 <%= visited_ken_count(@user) %>/47
 
