@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :followings_user_posts,only: :create
+  before_action :followings_user_posts, only: :create
 
   def new
     @post = Post.new
