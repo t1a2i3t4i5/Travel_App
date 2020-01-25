@@ -1,4 +1,8 @@
-<h1><%= @ken.name %>のページです</h1>
+<div class="uk-text-center">
+  <div class="uk-heading-small uk-text-lighter">
+    <%= @ken.name %>
+  </div>
+</div>
 
 <% if visited_ken?(current_user.id, @ken.id) %>
 <%= link_to "行ってない県状態にする", user_ken_path(@user_ken, ken_id: @ken.id), method: :delete %>

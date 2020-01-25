@@ -1,41 +1,43 @@
-<% object.each do |post| %>
-  <div class="uk-card uk-card-default">
-    <div class="uk-card-header">
-      <div class="uk-grid-small uk-flex-middle" uk-grid>
-        <div class="uk-width-auto">
-          <%= image_tag post.user.image.thumb30.url%>
-        </div>
-        <div class="uk-width-expand">
-            <div class="uk-card-badge">
-              <%= link_to post.ken.name , ken_path(post.ken.id) %>
-            </div>
-            <%= link_to user_path(post.user) do %>
-              <h3 class="uk-card-title uk-margin-remove-bottom"><%= post.user.name %></h3>
-            <% end %>
-            <p class="uk-text-meta uk-margin-remove-top"><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+<% if object.any? %>
+  <% object.each do |post| %>
+    <div class="uk-card uk-card-default">
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <%= image_tag post.user.image.thumb30.url%>
+          </div>
+          <div class="uk-width-expand">
+              <div class="uk-card-badge">
+                <%= link_to post.ken.name , ken_path(post.ken.id) %>
+              </div>
+              <%= link_to user_path(post.user) do %>
+                <h3 class="uk-card-title uk-margin-remove-bottom"><%= post.user.name %></h3>
+              <% end %>
+              <p class="uk-text-meta uk-margin-remove-top"><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+          </div>
         </div>
       </div>
+    <div class="uk-card-body">
+        <p><%= post.content %></p>
+        <% post.tag_list.each do |tag| %>
+          <%= link_to tags_show_path(tag_name: tag) do %>
+            <span class="uk-badge"><%= tag %></span>
+          <% end %>
+        <% end %>
+        <p><%= image_tag post.image.url if post.image? %></p>
     </div>
-  <div class="uk-card-body">
-      <p><%= post.content %></p>
-      <% post.tag_list.each do |tag| %>
-        <%= link_to tags_show_path(tag_name: tag) do %>
-          <span class="uk-badge"><%= tag %></span>
+    
+    <div class="uk-card-footer">
+      <% if current_user == post.user %>
+        <%= link_to post , method: :delete do %>
+          <span class="uk-float-right" uk-icon="trash"></span> 
         <% end %>
       <% end %>
-      <p><%= image_tag post.image.url if post.image? %></p>
-  </div>
-  
-  <div class="uk-card-footer">
-    
-    <% if current_user == post.user %>
-      <%= link_to post , method: :delete do %>
-        <span uk-icon="trash"></span> 
-      <% end %>
-    <% end %>
-    <div id="likes_buttons_<%= post.id %>">
-      <%= render 'likes/like' , post: post %>
+      <div id="likes_buttons_<%= post.id %>">
+        <%= render 'likes/like' , post: post %>
+      </div>
     </div>
-  </div>
-  
+  <% end %>
+<% else %>
+  <div class="uk-text-center">投稿が一つもないね</div>
 <% end %>

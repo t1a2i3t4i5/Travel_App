@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: b9e1e29df9b489a59743df892f03775142de37e7
+  specs:
+    faker (2.10.1)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -228,6 +235,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  faker!
   fog-aws
   jbuilder (= 2.7.0)
   jcanvas-rails (~> 0.1.0)

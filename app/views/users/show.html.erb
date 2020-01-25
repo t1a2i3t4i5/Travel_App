@@ -45,31 +45,33 @@
 
 </script>
 
-
-<h1><%= image_tag @user.image.thumb50.url %><%= @user.name %>さんのページ</h1>
-<%= render 'relationships/follow', user: @user %>
-
-
-<%= @user.introduction %>
-
-<br />
-
-<%= link_to following_user_path, class:"uk-button uk-button-text" do %>
-  フォロー<%= @user.followings.count %>
-<% end %>
-
-<%= link_to followers_user_path, class:"uk-button uk-button-text" do %>
-  フォロワー<%= @user.followers.count %>
-<% end %>
-
-<br />
-
-<%= visited_ken_count(@user) %>/47
-
-
-
-
-
+<div class="user uk-padding">
+  
+  <div class="uk-heading-small uk-text-lighter">
+    <%= image_tag @user.image.thumb100.url %><%= @user.name %>
+  </div>
+  
+  <div class="uk-float-right">
+    <%= render 'relationships/follow', user: @user %>
+  </div>
+  
+  
+  <%= @user.introduction %>
+  
+  <br />
+  
+  <%= link_to following_user_path, class:"uk-button uk-button-text uk-padding-small" do %>
+      フォロー<%= @user.followings.count %>
+  <% end %>
+  
+  <%= link_to followers_user_path, class:"uk-button uk-button-text uk-padding-small" do %>
+      フォロワー<%= @user.followers.count %>
+  <% end %>
+  
+  <br />
+  
+  <strong>訪れた都道府県の数:<%= visited_ken_count(@user) %>/47</strong>
+</div>
 
 
 

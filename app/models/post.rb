@@ -1,6 +1,16 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  #バリデーション
+  validates :content,
+    presence: true,
+    length: { in: 1..140 } 
+    
+  validates :user_id, presence: true
+
+
+
+
   #acts-as-taggable-onでタグを実装するのに必要
   acts_as_taggable
   
