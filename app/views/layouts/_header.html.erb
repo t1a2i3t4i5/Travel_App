@@ -1,39 +1,52 @@
 <nav class="uk-navbar-container" uk-navbar uk-sticky="bottom: #offset" style="background-color:#D3DEF1;">
   <div class="uk-navbar-left">
-      <ul class="uk-navbar-nav">
-        <li class="uk-active">
-          <%= link_to(home_pages_index_path) do %>
-                <span uk-icon="home"></span> 
-          <% end %>
-        </li>
-      </ul>
-  </div>
-  
-  <div class="uk-navbar-right">
-    
     <ul class="uk-navbar-nav">
-      <li>
-        <a href="#">
-          <% if user_signed_in? %>
-            <%= current_user.name %>
-          <% else %>
-            ログインしてないよ
+
+      <li class="uk-active">     
+        <% if user_signed_in? %>
+          <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav-primary"><span uk-icon="home"></button>
+        <% else %>
+          <%= link_to root_path do %>
+            <span uk-icon="home"></span>
           <% end %>
-            </a>
-        <div class="uk-navbar-dropdown">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
-          <% if user_signed_in? %>
-            <li><%= link_to "編集", edit_user_registration_path(current_user) %></li>
-            <li><%= link_to "profile", user_path(current_user) %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
-            <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
-          <% end %>
-        </ul>
-      </div>
+        <% end %>
       </li>
     </ul>
   </div>
+  
+  
+  
+  
+  <div id="offcanvas-nav-primary" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+      <ul class="uk-nav uk-nav-default uk-nav-center uk-margin-auto-vertical">
+      
+      <% if user_signed_in? %>
+        <li class="uk-active uk-padding">
+          <%= link_to home_pages_index_path do %>
+            <span uk-icon="home"></span>
+          <% end %>
+        </li>
+        
+        <li class="uk-active uk-padding">
+          <%= link_to current_user do %>
+            <span uk-icon="user"></span><%= current_user.name %>
+          <% end %>
+        </li>
+        
+        <li class="uk-active uk-padding">
+          <span uk-icon="search"></span>探す
+        </li>
+        
+        <li class="uk-nav-divider"></li>
+        
+        <li class="uk-active uk-padding">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <span uk-icon="sign-out"></span>ログアウト
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
 </nav>
-

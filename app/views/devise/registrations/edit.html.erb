@@ -1,13 +1,13 @@
 
 
 
-<div class="uk-position-center">
+<div class="uk-text-center">
 <h2><%= current_user.name %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class="uk-padding-small">
     <%= f.label :プロフィール画像 %><br />
     <img id="user_img_prev" src="" class='hidden' width="50px" height="50px" />
     <% if current_user.persisted? && current_user.image? %>
@@ -17,17 +17,17 @@
       <%= f.file_field :image, id: 'user_img' %>
   </div>
 
-  <div class="field">
+  <div class="uk-padding-small">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="uk-padding-small">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="uk-padding-small">
     <%= f.label :自己紹介 %><br />
     <%= f.text_area :introduction, value: current_user.introduction %>
   </div>
@@ -36,7 +36,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
+  <div class="uk-padding-small">
     <%= f.label :password %> <i>(変更しない場合は空白のままにしてね)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
@@ -45,12 +45,12 @@
     <% end %>
   </div>
 
-  <div class="field">
+  <div class="uk-padding-small">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
+  <div class="uk-padding-small">
     <%= f.submit "Update", class:"uk-button" %>
   </div>
 <% end %>
