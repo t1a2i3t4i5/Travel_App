@@ -4,10 +4,10 @@
 
       <li class="uk-active">     
         <% if user_signed_in? %>
-          <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav-primary"><span uk-icon="home"></button>
+          <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav"><span uk-icon="home" /></button>
         <% else %>
           <%= link_to root_path do %>
-            <span uk-icon="home"></span>
+            <span uk-icon="icon: home; ratio: 3.5"></span>
           <% end %>
         <% end %>
       </li>
@@ -15,29 +15,26 @@
   </div>
   
   
-  
-  
-  <div id="offcanvas-nav-primary" uk-offcanvas="overlay: true">
+  <div id="offcanvas-nav" uk-offcanvas="overlay: true">
     <div class="uk-offcanvas-bar uk-flex uk-flex-column">
       <ul class="uk-nav uk-nav-default uk-nav-center uk-margin-auto-vertical">
       
       <% if user_signed_in? %>
         <li class="uk-active uk-padding">
           <%= link_to home_pages_index_path do %>
-            <span uk-icon="home"></span>
+            <span uk-icon="icon: home; ratio: 3.5"></span>
           <% end %>
         </li>
         
-        <li class="uk-active uk-padding">
+        <li class="uk-active uk-padding-small">
           <%= link_to current_user do %>
             <span uk-icon="user"></span><%= current_user.name %>
           <% end %>
+          <%= link_to edit_user_registration_path do %>
+            <span uk-icon="pencil"></span>ユーザー編集
+          <% end %>
         </li>
-        
-        <li class="uk-active uk-padding">
-          <span uk-icon="search"></span>探す
-        </li>
-        
+
         <li class="uk-nav-divider"></li>
         
         <li class="uk-active uk-padding">
@@ -49,4 +46,15 @@
       </ul>
     </div>
   </div>
+  
+  <div class="uk-navbar-right">
+    <%= form_tag(searchs_index_path, method: :get) do %>
+      <%= label_tag(:keyword, "ユーザーと投稿") %>
+      <%= text_field_tag(:keyword, "", class:"uk-search-input") %>
+      <%= submit_tag("Search", class:"uk-button uk-button-small") %>
+    <% end %>
+  </div>
+  
+  
+  
 </nav>

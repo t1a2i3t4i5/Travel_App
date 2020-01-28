@@ -43,7 +43,7 @@
         onSelect : function(data)
         {
 				  $('.kenid').val(data.code);
-				  $('.uk-button').val(data.name + "を行ったことにする");
+				  $('.button').val(data.name + "を行ったことにする");
 				  $('.link').attr("href", "/kens/" + data.code);
 				  $('.uk-bold').text(data.name + "に移動");
 				  $("textarea").attr('placeholder', data.name + "について書いて！！");
@@ -69,7 +69,7 @@
       
       <%= f.file_field :image%>
       
-      <%= f.submit "post" , class:"uk-button" %>
+      <%= f.submit "post" , class:"uk-button button" %>
     <% end %>
     <hr>
     

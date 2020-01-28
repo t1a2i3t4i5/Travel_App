@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     home_pages_index_path if current_user
   end
   
-
+      
   private
  
   def configure_permitted_parameters 

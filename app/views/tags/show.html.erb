@@ -1,5 +1,10 @@
-<h1><strong><%= @tag_name %></strong>のタグが付いた投稿一覧</h1>
+<div class="uk-text-center">
+  <div class="uk-heading-small uk-text-lighter">
+    <strong><%= @tag_name %></strong>のタグが付いた投稿一覧
+  </div>
+</div>
 
-<div class="uk-padding">
+
+<div class="uk-padding show">
   <%= render 'posts/post' , object: @posts %>
 </div>

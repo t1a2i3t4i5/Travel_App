@@ -18,6 +18,7 @@ gem 'fog-aws'
 gem 'rmagick'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'faker', :git => 'https://github.com/stympy/faker.git'
+gem 'ransack'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

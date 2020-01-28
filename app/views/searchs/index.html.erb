@@ -1,0 +1,30 @@
+<div class="uk-text-center">
+  <div class="uk-heading-small uk-text-lighter">
+    <span class="uk-text-italic"><%= @keyword %></span>の検索結果
+  </div>
+</div>
+
+<div class="uk-grid show">
+    <div class="post uk-width-1-1">
+      <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
+        <li><a href="#">ユーザー</a></li>
+        <li><a href="#">投稿</a></li>
+      </ul>
+      
+      <ul class="uk-switcher">
+        
+        <li class="uk-section-xsmall">
+          <div class="uk-padding">
+            <%= render 'users/users_info' , users: @users %>
+          </div>
+        </li>
+        
+        <li class="uk-section-xsmall">
+          <div class="uk-padding">
+            <%= render 'posts/post' , object: @posts %>
+          </div>
+        </li>
+        
+      </ul>
+  </div>
+</div>

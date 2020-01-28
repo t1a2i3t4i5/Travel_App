@@ -6,22 +6,20 @@ Rails.application.routes.draw do
   end
   
   get 'home_pages/index' => 'home_pages#index'
-  
+  get 'tags/show' => 'tags#show'
+  get 'searchs/index' => 'searchs#index'
+
   resources :users do
-    
     collection do
       #/users/prefecture_reset
       delete :prefecture_reset, :posts_reset
     end
-    
     member do
       # /users/:id/ ...
       get :following, :followers
     end
-    
   end
   
-  get 'tags/show' => 'tags#show'
 
   resources :posts do
     resources :likes, only: [:create, :destroy]
