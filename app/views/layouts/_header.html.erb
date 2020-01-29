@@ -7,7 +7,7 @@
           <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav"><span uk-icon="home" /></button>
         <% else %>
           <%= link_to root_path do %>
-            <span uk-icon="icon: home; ratio: 3.5"></span>
+            <span uk-icon="icon: home"></span>
           <% end %>
         <% end %>
       </li>
@@ -47,13 +47,15 @@
     </div>
   </div>
   
-  <div class="uk-navbar-right">
-    <%= form_tag(searchs_index_path, method: :get) do %>
-      <%= label_tag(:keyword, "ユーザーと投稿") %>
-      <%= text_field_tag(:keyword, "", class:"uk-search-input") %>
-      <%= submit_tag("Search", class:"uk-button uk-button-small") %>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="uk-navbar-right">
+      <%= form_tag(searchs_index_path, method: :get) do %>
+        <%= label_tag(:keyword, "ユーザーと投稿") %>
+        <%= text_field_tag(:keyword, "", class:"uk-search-input") %>
+        <%= submit_tag("Search", class:"uk-button uk-button-small") %>
+      <% end %>
+    </div>
+  <% end %>
   
   
   
