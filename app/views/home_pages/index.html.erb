@@ -45,7 +45,7 @@
 				  $('.kenid').val(data.code);
 				  $('.button').val(data.name + "を行ったことにする");
 				  $('.link').attr("href", "/kens/" + data.code);
-				  $('.uk-bold').text(data.name + "に移動");
+				   $('.image').children('img').attr('src', '/assets/prefecture/' + data.code + '.png');
 				  $("textarea").attr('placeholder', data.name + "について書いて！！");
 				  UIkit.modal("#modal-example").show();
         }
@@ -56,46 +56,48 @@
 <div class="uk-grid" uk-grid>
   <div class="map-container uk-width-1-2 uk-padding-large"></div>
   
-  
   <div class="form uk-width-1-2 uk-padding-small">
-    
     <p class="uk-text-bold uk-text-center">タイムライン</p>
     <div class="uk-padding">
       <%= render 'posts/post' , object: @posts %>
     </div>
-
-
-
   </div>
     
-    <a href="/home_pages/index" class="link"><p class="uk-bold">hoge</p></a>
 
 </div>
-
-
-
-
 
 
 <!-- This is the modal -->
 <div id="modal-example" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
     <h2 class="uk-modal-title">投稿する</h2>
-    <div class="form uk-width-1-2 ">
-    
-    <%= form_for(@post) do |f| %>
-      <%= render 'shared/error_messages', model: f.object %>
+    <div uk-grid>
       
-      <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid"%>
+      <div class="form uk-width-1-2 ">
+      <%= form_for(@post) do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        
+        <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid uk-margin-small"%>
+        
+        <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea uk-margin-small" %>
+        
+        <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"uk-margin-small" %>
+        
+        <%= f.file_field :image, class:"uk-margin-small"%>
+        
+        <%= f.submit "post" , class:"uk-button button" %>
+      <% end %>
+      </div>
       
-      <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea" %>
+      <div class="uk-width-1-2 ">
+        <a href="/home_pages/index" class="link">
+          <div class="image">
+            <img src="" alt="">
+          </div>
+        </a>
+      </div>
       
-      <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"form-control" %>
-      
-      <%= f.file_field :image%>
-      
-      <%= f.submit "post" , class:"uk-button button" %>
-    <% end %>
     </div>
   </div>
 </div>
