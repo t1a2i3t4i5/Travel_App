@@ -7,6 +7,10 @@
     <% flash.each do  |message_type, message| %>
         <div class = "uk-alert uk-alert-<%= message_type %>"><%= message %></div>
     <% end %>
+    <div class="loader-wrap">
+    	<div class="loader">Loading...</div>
+    </div>
+
     
     <%= yield %>
     
