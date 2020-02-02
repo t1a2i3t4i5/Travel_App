@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,26 +11,28 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
- */
- @import "uikit.min.css";
 
+
+ */
+@import url(uikit.min.css);
+/* line 19, /home/ec2-user/environment/Travel_App/app/assets/stylesheets/application.scss */
 .user {
-    width: 40%;
-    margin: 0 25% 0 25%;
+  width: 40%;
+  margin: 0 25% 0 25%;
 }
 
+/* line 24, /home/ec2-user/environment/Travel_App/app/assets/stylesheets/application.scss */
 .show {
   width: 50%;
   margin: 0 25% 0 25%;
 }
 
-footer{
+/* line 29, /home/ec2-user/environment/Travel_App/app/assets/stylesheets/application.scss */
+footer {
   width: 100%;
   text-align: center;
   padding: 20px 0;
   position: fixed;
-  bottom: 0; /*下に固定*/
+  bottom: 0;
+  /*下に固定*/
 }
-
