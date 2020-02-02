@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
     home_pages_index_path if current_user
   end
   
-      
+  @hoge = "hogege"
+  
+  
   private
  
   def configure_permitted_parameters 

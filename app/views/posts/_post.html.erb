@@ -24,9 +24,17 @@
               <span class="uk-badge"><%= tag %></span>
             <% end %>
           <% end %>
-          <p><%= image_tag post.image.url if post.image? %></p>
+
+        <% if post.image? %>
+          <div uk-lightbox="animation: slide">
+            <div>
+              <a class="uk-inline uk-padding-small" href='<%=post.image.url %>'>
+                <%= image_tag post.image.url %>
+              </a>
+            </div>
+          </div>
+        <% end %>
       </div>
-      
       <div class="uk-card-footer">
         <% if current_user == post.user %>
           <%= link_to post , method: :delete do %>
@@ -38,6 +46,7 @@
         </div>
       </div>
     </div>
+    <div class="uk-divider"></div>
   <% end %>
 <% else %>
   <div class="uk-text-center">投稿が一つもないね</div>

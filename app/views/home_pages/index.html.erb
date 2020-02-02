@@ -47,33 +47,19 @@
 				  $('.link').attr("href", "/kens/" + data.code);
 				  $('.uk-bold').text(data.name + "に移動");
 				  $("textarea").attr('placeholder', data.name + "について書いて！！");
+				  UIkit.modal("#modal-example").show();
         }
       });
   });
 
  </script>
 <div class="uk-grid" uk-grid>
-  <div class="map-container uk-width-1-2"></div>
+  <div class="map-container uk-width-1-2 uk-padding-large"></div>
   
-  <div class="form uk-width-1-2">
+  
+  <div class="form uk-width-1-2 uk-padding-small">
     
-    <%= form_for(@post) do |f| %>
-    
-      <%= render 'shared/error_messages', model: f.object %>
-          
-      <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid"%>
-      
-      <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea" %>
-      
-      <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"form-control" %>
-      
-      <%= f.file_field :image%>
-      
-      <%= f.submit "post" , class:"uk-button button" %>
-    <% end %>
-    <hr>
-    
-    <p class="uk-text-bold">タイムライン</p>
+    <p class="uk-text-bold uk-text-center">タイムライン</p>
     <div class="uk-padding">
       <%= render 'posts/post' , object: @posts %>
     </div>
@@ -84,4 +70,32 @@
     
     <a href="/home_pages/index" class="link"><p class="uk-bold">hoge</p></a>
 
+</div>
+
+
+
+
+
+
+<!-- This is the modal -->
+<div id="modal-example" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">投稿する</h2>
+    <div class="form uk-width-1-2 ">
+    
+    <%= form_for(@post) do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      
+      <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid"%>
+      
+      <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea" %>
+      
+      <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"form-control" %>
+      
+      <%= f.file_field :image%>
+      
+      <%= f.submit "post" , class:"uk-button button" %>
+    <% end %>
+    </div>
+  </div>
 </div>

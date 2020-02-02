@@ -1,5 +1,5 @@
 <div class="uk-inline">
-<%= image_tag 'sumou.jpg', class:'uk-background-cover' %>
+<%= image_tag 'backgroundimage.jpg', class:'uk-background-cover' %>
   <div class="uk-overlay-default uk-position-cover"></div>
   <div class="uk-position-center">
     <h2>Sign up</h2>
@@ -19,9 +19,8 @@
       
       <div class="field">
         <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
+        <em>(6 文字以上だよ)</em>
+        <br />
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
       
@@ -31,7 +30,7 @@
       </div>
       
       <div class="actions">
-        <%= f.submit "Sign up" %>
+        <%= f.submit "Sign up", class:"uk-button" %>
       </div>
       
     <% end %>

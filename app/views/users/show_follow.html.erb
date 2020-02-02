@@ -1,2 +1,10 @@
-<h1><%= @user.name %> <%= @title %></h1>
-<%= render 'users/users_info' , users: @users %>
+<div class="uk-text-center">
+  <div class="uk-heading-small uk-text-lighter">
+    <%= @user.name %><%= @title %>
+  </div>
+</div>
+
+<div class="uk-padding show">
+  <%= render 'users/users_info' , users: @users %>
+</div>
+

@@ -24,3 +24,17 @@
   width: 50%;
   margin: 0 25% 0 25%;
 }
+
+
+
+footer{
+  width: 100%;
+
+
+  text-align: center;
+  padding: 20px 0;
+
+  position: fixed;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
