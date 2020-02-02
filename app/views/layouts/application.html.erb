@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
+  
   <%= render 'layouts/head' %>
+  
   <body>
+    <div class="loader-wrap">
+    	<div class="loader">Loading...</div>
+    </div>
+
     <%= render 'layouts/header' %>
     <%# アラート機能 #%>
     <% flash.each do  |message_type, message| %>
         <div class = "uk-alert uk-alert-<%= message_type %>"><%= message %></div>
     <% end %>
-    <div class="loader-wrap">
-    	<div class="loader">Loading...</div>
-    </div>
 
     
     <%= yield %>
