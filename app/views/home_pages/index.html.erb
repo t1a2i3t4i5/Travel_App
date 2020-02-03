@@ -14,7 +14,7 @@
             name: kens[kencode], 
             color:
                   <% if current_user.user_ken.find_by(ken_id: count) %>
-                    "pink", 
+                    "#89c7de", 
                   <% else %>
                     "white",
                   <% end %>
@@ -42,12 +42,13 @@
         fontShadowColor : "#fff",
         onSelect : function(data)
         {
+          UIkit.modal("#modal-example").show();
 				  $('.kenid').val(data.code);
 				  $('.button').val(data.name + "を行ったことにする");
 				  $('.link').attr("href", "/kens/" + data.code);
-				   $('.image').children('img').attr('src', '/assets/prefecture/' + data.code + '.png');
+				  $('.image').children('img').attr('src', '/assets/prefecture/' + data.code + '.png');
 				  $("textarea").attr('placeholder', data.name + "について書いて！！");
-				  UIkit.modal("#modal-example").show();
+				  
         }
       });
   });
@@ -63,18 +64,16 @@
     </div>
   </div>
     
-
 </div>
 
-
-<!-- This is the modal -->
 <div id="modal-example" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <button class="uk-modal-close-default" type="button" uk-close></button>
-    <h2 class="uk-modal-title">投稿する</h2>
+    
     <div uk-grid>
       
       <div class="form uk-width-1-2 ">
+      <h2 class="uk-modal-title">投稿</h2>
       <%= form_for(@post) do |f| %>
         <%= render 'shared/error_messages', model: f.object %>
         
@@ -91,6 +90,7 @@
       </div>
       
       <div class="uk-width-1-2 ">
+        <h2 class="uk-modal-title">移動</h2>
         <a href="/home_pages/index" class="link">
           <div class="image">
             <img src="" alt="">

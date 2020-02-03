@@ -5,11 +5,8 @@ class ApplicationController < ActionController::Base
 
   # 新規登録後のリダイレクト先をマイページへ
   def after_sign_in_path_for(resource)
-    home_pages_index_path if current_user
+    current_user if current_user
   end
-  
-  @hoge = "hogege"
-  
   
   private
  

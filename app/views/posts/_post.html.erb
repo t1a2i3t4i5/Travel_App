@@ -1,5 +1,4 @@
 <% if object.any? %>
-<div class="uk-overflow-auto uk-height-max-large">
   <% object.each do |post| %>
     <div class="uk-card uk-card-default">
         <div class="uk-card-header">
@@ -49,7 +48,6 @@
     </div>
     <div class="uk-divider"></div>
   <% end %>
-</div>
 <% else %>
   <div class="uk-text-center">投稿が一つもないね</div>
 <% end %>
