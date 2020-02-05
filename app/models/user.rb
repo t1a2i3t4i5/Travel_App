@@ -2,6 +2,11 @@ class User < ApplicationRecord
   #画像投稿の時に必要
   mount_uploader :image, ImageUploader
   
+  validate :check_name
+  
+  
+  
+  
   #ポストモデルと関連付けている
   has_many  :posts , dependent: :destroy
   
@@ -56,6 +61,22 @@ class User < ApplicationRecord
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+  
+  
+  #バリデーション
+  def check_name
+    eros = ["sex", "ちんこ", "まんこ", "おっぱい"]
+    flg = 0;
+    eros.each do | ero | 
+      if name == ero
+          flg += 1
+      end
+    end
+    
+    if flg > 0
+      errors.add(:name, "にはエッチな単語は使用できないよ")
+    end
   end
   
 end

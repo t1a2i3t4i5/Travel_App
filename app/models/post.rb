@@ -7,6 +7,7 @@ class Post < ApplicationRecord
     length: { in: 1..140 } 
     
   validates :user_id, presence: true
+  validate :check_content
 
 
 
@@ -24,6 +25,20 @@ class Post < ApplicationRecord
   has_many :likes , dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
   
+  #バリデーション
+  def check_content
+    eros = ["sex", "ちんこ", "まんこ", "おっぱい"]
+    flg = 0;
+    eros.each do | ero | 
+      if content.include?(ero)
+          flg += 1
+      end
+    end
+    
+    if flg > 0
+      errors.add(:content, "にはエッチな単語は使用できないよ")
+    end
+  end
 
-
+  
 end
