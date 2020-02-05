@@ -79,11 +79,16 @@
         
         <%= f.hidden_field :ken_id, value: "hoge" , class:"kenid uk-margin-small"%>
         
+        <%= f.text_field :place , placeholder: "行った場所を書きましょう", class:"uk-textarea uk-margin-small" %>
+        
         <%= f.text_area :content , placeholder: "都道府県を選択してください", class:"uk-textarea uk-margin-small" %>
         
         <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"uk-margin-small" %>
         
+        <%= f.date_field :visited_at, value:Date.today %>
+        
         <%= f.file_field :image, class:"uk-margin-small"%>
+        
         
         <%= f.submit "post" , class:"uk-button button" %>
       <% end %>

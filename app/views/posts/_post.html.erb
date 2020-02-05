@@ -4,7 +4,7 @@
         <div class="uk-card-header">
           <div class="uk-grid-small uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
-              <%= image_tag post.user.image.thumb30.url%>
+              <%= image_tag post.user.image.thumb50.url%>
             </div>
             <div class="uk-width-expand">
                 <div class="uk-card-badge">
@@ -13,7 +13,7 @@
                 <%= link_to user_path(post.user) do %>
                   <h3 class="uk-card-title uk-margin-remove-bottom"><%= post.user.name %></h3>
                 <% end %>
-                <p class="uk-text-meta uk-margin-remove-top"><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+                <p class="uk-text-meta uk-margin-remove-top"><%= link_to post.place, "http://www.google.co.jp/search?q=#{post.place}", target: :_blank %></p>
             </div>
           </div>
         </div>
@@ -44,7 +44,9 @@
         <div id="likes_buttons_<%= post.id %>">
           <%= render 'likes/like' , post: post %>
         </div>
+        <div class="uk-padding-small uk-padding-remove-left"><%= post.visited_at %> </div>
       </div>
+
     </div>
     <div class="uk-divider"></div>
   <% end %>

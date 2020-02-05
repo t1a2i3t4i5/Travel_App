@@ -9,7 +9,6 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     @user_ken = current_user.user_ken.build(ken_id:params[:post][:ken_id])
-
     if @user_ken.save && @post.save
       flash[:success] = "ポストが作成され行った県状態にしました"
       redirect_to ken_path(@post.ken_id)
@@ -32,7 +31,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:ken_id, :content, :tag_list, [:image])
+    params.require(:post).permit(:ken_id, :content, :tag_list, :image, :visited_at, :place)
   end
   
   def followings_user_posts
