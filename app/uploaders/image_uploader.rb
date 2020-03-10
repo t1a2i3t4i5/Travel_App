@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
-  
-  #本番環境の時と開発環境の時に保存する場所を変えている
+
+  # 本番環境の時と開発環境の時に保存する場所を変えている
   if Rails.env.development?
     storage :file
   elsif Rails.env.test?
@@ -17,58 +19,50 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url(*args)
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-    "default.jpg"
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  def default_url(*_args)
+    #   # For Rails 3.1+ asset pipeline compatibility:
+    #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+    'default.jpg'
+    #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
- 
- # 画像の上限を640x480にする
-  process :resize_to_limit => [640, 480]
- 
+
+  # 画像の上限を640x480にする
+  process resize_to_limit: [640, 480]
+
   # 保存形式をJPGにする
-  process :convert => 'jpg'
- 
+  process convert: 'jpg'
+
   # サムネイルを生成する設定
   version :thumb do
-    process :resize_to_limit => [300, 300]
+    process resize_to_limit: [300, 300]
   end
 
   version :thumb100 do
-    process :resize_to_limit => [100, 100]
+    process resize_to_limit: [100, 100]
   end
-  
+
   version :thumb50 do
-    process :resize_to_limit => [50, 50]
+    process resize_to_limit: [50, 50]
   end
- 
+
   version :thumb30 do
-    process :resize_to_limit => [30, 30]
+    process resize_to_limit: [30, 30]
   end
- 
+
   # jpg,jpeg,gif,pngしか受け付けない
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
- 
- # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
+
+  # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
   def filename
     super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
   end
- 
- # ファイル名を日付にするとタイミングのせいでサムネイル名がずれる
- #ファイル名はランダムで一意になる
-  def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
-  end
- 
+
   protected
-  
+
   def secure_token
     var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
- 
- 
 end

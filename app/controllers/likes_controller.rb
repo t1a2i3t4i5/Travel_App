@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
-  
+
   def create
     @like = current_user.likes.create(post_id: params[:post_id])
     @post.reload
@@ -18,6 +20,4 @@ class LikesController < ApplicationController
   def set_post
     @post = Post.find(params[:post_id])
   end
-  
-  
 end

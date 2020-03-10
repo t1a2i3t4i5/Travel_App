@@ -42,7 +42,7 @@
         fontShadowColor : "#fff",
         onSelect : function(data)
         {
-          UIkit.modal("#modal-example").show();
+          UIkit.modal("#modal-prefecture").show();
 				  $('.kenid').val(data.code);
 				  $('.button').val(data.name + "を行ったことにする");
 				  $('.link').attr("href", "/kens/" + data.code);
@@ -54,10 +54,10 @@
   });
 
  </script>
-<div class="uk-grid" uk-grid>
-  <div class="map-container uk-width-1-2 uk-padding-large"></div>
+<div class="uk-flex">
+  <div class="map-container uk-padding-small"></div>
   
-  <div class="form uk-width-1-2 uk-padding-small">
+  <div class="form uk-padding-small">
     <p class="uk-text-bold uk-text-center">タイムライン</p>
     <div class="uk-padding">
       <%= render 'posts/post' , object: @posts %>
@@ -66,13 +66,13 @@
     
 </div>
 
-<div id="modal-example" uk-modal>
+<div id="modal-prefecture" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <button class="uk-modal-close-default" type="button" uk-close></button>
     
-    <div uk-grid>
+    <div class="uk-grid">
       
-      <div class="form uk-width-1-2 ">
+      <div class="form uk-width-1-2">
       <h2 class="uk-modal-title">投稿</h2>
       <%= form_for(@post) do |f| %>
         <%= render 'shared/error_messages', model: f.object %>
