@@ -1,19 +1,19 @@
-## Jaravlate
+# Jaravlate
 
 日本の行った県が一目でわかるSNSアプリです。<br>
 自他ともに思い出を確認できます。<br>
 ※レスポンシブには対応していません
 
 # URL
-https://murmuring-escarpment-11805.herokuapp.com/
+https://murmuring-escarpment-11805.herokuapp.com/<br>
 現在はログインしていないと機能は使えません。<br>
 ログインすると都道府県に対して投稿することができます。
 
 # 言語・使用技術
 #### フロント
-- Haml
+- HTML
 - Scss
-- jQuery
+- japanmap(https://takemaru-hirai.github.io/japan-map/)
 - UIkit
 
 #### バックエンド
