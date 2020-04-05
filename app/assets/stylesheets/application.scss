@@ -16,7 +16,7 @@
  @import "uikit.min.css";
 
 .user {
-    width: 40%;
+    width: 60%;
     margin: 0 25% 0 25%;
 }
 
@@ -35,9 +35,20 @@ footer {
 
 .font{
     font-family: "OCR A Extended";
-    font-size: 300px;
+    font-size: 250px;
 }
 
 .map-container {
     min-width: 500px;
+}
+
+
+/*ログインフォームのtopをずらしている */
+.uk-position-center {
+   top: 60%!important;
+}
+
+.description {
+  position: absolute;
+  left:55%;
 }

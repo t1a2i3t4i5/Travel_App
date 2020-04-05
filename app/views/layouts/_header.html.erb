@@ -15,31 +15,42 @@
   
   <div id="offcanvas-nav" uk-offcanvas="overlay: true">
     <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-      <ul class="uk-nav uk-nav-default uk-nav-center uk-margin-auto-vertical">
+      <ul class="uk-nav uk-nav-default">
       
       <% if user_signed_in? %>
-        <li class="uk-active uk-padding">
-          <%= link_to home_pages_index_path do %>
-            <span uk-icon="icon: home; ratio: 3.5"></span>
-          <% end %>
-        </li>
-        
+ 
         <li class="uk-active uk-padding-small">
           <%= link_to current_user do %>
             <span uk-icon="user"></span><%= current_user.name %>
           <% end %>
-          <%= link_to edit_user_registration_path do %>
-            <span uk-icon="pencil"></span>ユーザー編集
+        </li>
+        
+        <li class="uk-active uk-padding-small">
+          <%= link_to new_post_path do %>
+            <span uk-icon="comment"></span>投稿
           <% end %>
         </li>
-
+        
+        <li class="uk-active uk-padding-small">
+          <%= link_to home_pages_index_path do %>
+          <span uk-icon="clock"></span>タイムライン
+          <% end %>
+        </li>
+        
+        <li class="uk-active uk-padding-small">
+          <%= link_to edit_user_registration_path do %>
+          <span uk-icon="pencil"></span>ユーザー編集
+          <% end %>
+        </li>
+        
         <li class="uk-nav-divider"></li>
         
-        <li class="uk-active uk-padding">
+        <li class="uk-active uk-padding-small">
           <%= link_to destroy_user_session_path, method: :delete do %>
             <span uk-icon="sign-out"></span>ログアウト
           <% end %>
         </li>
+        
       <% end %>
       </ul>
     </div>

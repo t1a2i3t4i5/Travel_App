@@ -25,9 +25,19 @@
       <% end %>
       
       <div class="actions">
-        <%= f.submit "Log in", class:"uk-button" %>
+        <%= f.submit "Log in", class:"uk-button uk-button-secondary" %>
       </div>
     <% end %>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+      <%= f.hidden_field :email, value:"guest@example.com" %>
+      <%= f.hidden_field :password, value:"guest1" %>
+    
+      <%= f.submit "簡単ログイン", class:"uk-button uk-button-primary" %>
+      
+    <% end %>
+    
     
     <%= render "devise/shared/links" %>
   </div>

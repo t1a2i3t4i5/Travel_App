@@ -15,14 +15,14 @@ class UsersController < ApplicationController
   # 投稿を全部削除する
   def posts_reset
     current_user.posts.destroy_all
-    flash[:success] = '投稿全部削除したぜ'
+    flash[:success] = '投稿全部削除しました'
     redirect_to edit_user_registration_url
   end
 
   # すべての県を行ったことない状態にする
   def prefecture_reset
     current_user.user_ken.destroy_all
-    flash[:success] = 'すべての都道府県を行ったことない状態にしたぜ'
+    flash[:success] = 'すべての都道府県を行ったことない状態にしました'
     redirect_to edit_user_registration_url
   end
 
