@@ -4,7 +4,7 @@
         <div class="uk-card-header">
           <div class="uk-grid-small uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
-              <%= image_tag post.user.image.thumb.url, width:50, height:50%>
+              <%= image_tag post.user.image.url, width:50, height:50%>
             </div>
             <div class="uk-width-expand">
                 <div class="uk-card-badge">
@@ -13,7 +13,7 @@
                 <%= link_to user_path(post.user) do %>
                   <h3 class="uk-card-title uk-margin-remove-bottom"><%= post.user.name %></h3>
                 <% end %>
-                <p class="uk-text-meta uk-margin-remove-top"><%= link_to post.place, "http://www.google.co.jp/search?q=#{post.place}", target: :_blank %></p>
+                <p class="uk-margin-remove-top"><%= link_to post.place, "http://www.google.co.jp/search?q=#{post.place}", target: :_blank %></p>
             </div>
           </div>
         </div>
