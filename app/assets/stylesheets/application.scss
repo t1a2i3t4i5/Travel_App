@@ -33,15 +33,14 @@ footer {
   bottom: 0; /*下に固定*/
 }
 
-.font{
-    font-family: "OCR A Extended";
-    font-size: 250px;
+.jaravlate{
+  font-family: "OCR A Extended";
+  font-size: 1000% ;
+  width: 100% ;
+  position:absolute;
+  top:0;
+  text-align: center ;
 }
-
-.map-container {
-    min-width: 500px;
-}
-
 
 /*ログインフォームのtopをずらしている */
 .uk-position-center {
