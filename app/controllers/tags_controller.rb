@@ -8,4 +8,5 @@ class TagsController < ApplicationController
       @posts = Post.tagged_with(params[:tag_name].to_s)
     end
   end
+
 end

@@ -22,10 +22,12 @@ gem 'sass-rails',   '5.0.6'
 gem 'turbolinks',   '5.0.1'
 gem 'uglifier',     '3.2.0'
 
+
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri
   gem 'rubocop'
   gem 'sqlite3', '1.3.13'
+  gem 'solargraph', group: :development
 end
 
 group :development do
