@@ -8,6 +8,14 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def show
+    @post = Post.find_by(id: params[:id])
+  end
+
+  def edit
+    @post = Post.find_by(id: params[:id])
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     @user_ken = current_user.user_ken.build(ken_id: params[:post][:ken_id])

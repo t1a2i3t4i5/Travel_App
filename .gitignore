@@ -21,3 +21,9 @@
 /yarn-error.log
 
 .byebug_history
+
+# アップロードした画像をpushしない
+public/uploads/
+
+# いけてないところリストをpushしない
+いけてないことろ

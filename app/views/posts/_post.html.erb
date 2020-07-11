@@ -1,55 +1,58 @@
-<% if object.any? %>
-  <% object.each do |post| %>
+<div class="uk-padding">
+    <% if object.any? %>
+    <% object.each do |post| %>
     <div class="uk-card uk-card-default">
         <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <%= image_tag post.user.image.url, width:50, height:50%>
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-badge">
-                  <%= link_to post.ken.name , ken_path(post.ken.id) %>
+            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    <%= image_tag post.user.image.url, class:"user_image" %>
                 </div>
-                <%= link_to user_path(post.user) do %>
-                  <h3 class="uk-card-title uk-margin-remove-bottom"><%= post.user.name %></h3>
-                <% end %>
-                <p class="uk-margin-remove-top"><%= link_to post.place, "http://www.google.co.jp/search?q=#{post.place}", target: :_blank %></p>
+                <div class="uk-width-expand">
+                    <div class="uk-card-badge">
+                        <%= link_to post.ken.name , ken_path(post.ken.id) %>
+                    </div>
+                    <%= link_to user_path(post.user) do %>
+                    <h3 class="uk-card-title uk-margin-remove-bottom"><%= post.user.name %></h3>
+                    <% end %>
+                    <p class="uk-margin-remove-top"><%= link_to post.place, "http://www.google.co.jp/search?q=#{post.place}", target: :_blank %></p>
+                </div>
             </div>
-          </div>
         </div>
-      <div class="uk-card-body">
-          <p><%= post.content %></p>
-          <% post.tag_list.each do |tag| %>
+        <div class="uk-card-body">
+            <p><%= post.content %></p>
+            <% post.tag_list.each do |tag| %>
             <%= link_to tags_show_path(tag_name: tag) do %>
-              <span class="uk-badge"><%= tag %></span>
+            <span class="uk-badge"><%= tag %></span>
             <% end %>
-          <% end %>
+            <% end %>
 
-        <% if post.image? %>
-          <div uk-lightbox="animation: slide">
-            <div>
-              <a class="uk-inline uk-padding-small" href='<%=post.image.url %>'>
-                <%= image_tag post.image.url %>
-              </a>
+            <% if post.image? %>
+            <div uk-lightbox="animation: slide">
+                <div>
+                    <a class="uk-inline uk-padding-small" href='<%= post.image.url %>'>
+                        <%= image_tag post.image.thumb.url%>
+                    </a>
+                </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="uk-card-footer">
-        <% if current_user == post.user %>
-          <%= link_to post , method: :delete do %>
-            <span class="uk-float-right" uk-icon="trash"></span> 
-          <% end %>
-        <% end %>
-        <div id="likes_buttons_<%= post.id %>">
-          <%= render 'likes/like' , post: post %>
+            <% end %>
         </div>
-        <div class="uk-padding-small uk-padding-remove-left"><%= post.visited_at %> </div>
-      </div>
+        <div class="uk-card-footer">
+            <% if current_user == post.user %>
+            <%= link_to post , method: :delete do %>
+            <span class="uk-float-right" uk-icon="trash"></span>
+            <% end %>
+            <% end %>
+            <div id="likes_buttons_<%= post.id %>">
+                <%= render 'likes/like' , post: post %>
+            </div>
+            <div class="uk-padding-small uk-padding-remove-left"><%= post.visited_at %> </div>
+            <%= link_to post.content , post %>
+        </div>
 
     </div>
     <div class="uk-divider"></div>
-  <% end %>
-<% else %>
-  <div class="uk-text-center">投稿が一つもないね</div>
-<% end %>
+    <% end %>
+    <% else %>
+    <div class="uk-text-center">投稿が一つもないね</div>
+    <% end %>
+</div>

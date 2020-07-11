@@ -1,31 +1,28 @@
 <script>
-
-  $(function()
-  {        
-    var kens = [ 'hoge', '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県', '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県', '鳥取県', '島根県', '岡山県', '広島県', '山口県', '徳島県', '香川県', '愛媛県', '高知県', '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県' ]; 
+$(function(){
+    var kens = [ 'hoge', '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県', '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県', '鳥取県', '島根県', '岡山県', '広島県', '山口県', '徳島県', '香川県', '愛媛県', '高知県', '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県' ];
     var kencode = 1;
     var areas =[];
-    
+
     <% (1..47).each do |count| %>
-         areas.push(
-          {
+        areas.push({
             code : kencode,
-            name: kens[kencode], 
+            name: kens[kencode],
             color:
-                  <% if @user.user_ken.find_by(ken_id: count) %>
-                    "#89c7de", 
-                  <% else %>
+                <% if @user.user_ken.find_by(ken_id: count) %>
+                    "#89c7de",
+                <% else %>
                     "white",
-                  <% end %>
-            hoverColor: "#b3b2ee", 
+                <% end %>
+            hoverColor: "#b3b2ee",
             prefectures: [kencode]
             });
-         kencode++;
-   <% end %>
+        kencode++;
+    <% end %>
 
-    $("#map-container").japanMap
+    $("#japanmap").japanMap
     ({
-        width: 1000,
+        width: 750,
         selection: "area",
         areas: areas,
         backgroundColor : "white",
@@ -39,67 +36,50 @@
         movesIslands : true,
         fontSize : 11,
         fontShadowColor : "#fff",
-        
-      });
-  });
-
+    });
+});
 </script>
 
-<div class="user uk-padding">
-  
-  <div class="uk-heading-small uk-text-lighter user-show-name">
-    <%= image_tag @user.image.url, width:100, height:100 %><%= @user.name %>
-  </div>
-  
-  <div class="uk-float-right">
-    <%= render 'relationships/follow', user: @user %>
-  </div>
-  
-  
-  <%= @user.introduction %>
-  
-  <br />
-  
-  <%= link_to following_user_path, class:"uk-button uk-button-text uk-padding-small" do %>
-      フォロー<%= @user.followings.count %>
-  <% end %>
-  
-  <%= link_to followers_user_path, class:"uk-button uk-button-text uk-padding-small" do %>
-      フォロワー<%= @user.followers.count %>
-  <% end %>
-  
-  <br />
-  
-  <strong>訪れた都道府県の数:<%= visited_ken_count(@user) %>/47</strong>
-</div>
+<div class="uk-container">
+    <div class="user_info">
+        <div class="uk-heading-small uk-text-lighter">
+            <%= image_tag @user.image.thumb.url ,class:"uk-border-circle", width:100, height:100 %><%= @user.name %>
+        </div>
 
+        <div class="uk-float-right">
+            <%= render 'relationships/follow', user: @user %>
+        </div>
 
+        <%= @user.introduction %>
+    </div>
 
-<div class="uk-grid">
-  <div class="map-container uk-width-1-2">
-    <div id="map-container"></div>
-  </div>
-    <div class="post uk-width-1-2">
-      <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
-        <li><a href="#">投稿</a></li>
-        <li><a href="#">いいね</a></li>
-      </ul>
-      
-      <ul class="uk-switcher">
-        
-        <li class="uk-section-xsmall">
-          <div class="uk-padding">
+    <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
+        <li><a href="#">投稿<%= @user.posts.count %></a></li>
+        <li><a href="#">いいね<%= @user.likes.count %></a></li>
+        <li><a href="#">フォロー<%= @user.followings.count %></a></li>
+        <li><a href="#">フォロワー<%= @user.followers.count %></a></li>
+        <li><a href="#">日本地図<%= visited_ken_count(@user) %>/47</a></li>
+    </ul>
+
+    <ul class="uk-switcher">
+        <li>
             <%= render 'posts/post' , object: @posts %>
-          </div>
         </li>
-        
-        <li class="uk-section-xsmall">
-          <div class="uk-padding">
-            <%= render 'posts/post' , object: @user_liked_posts %>
-          </div>
-        </li>
-        
-      </ul>
-  </div>
-</div>
 
+        <li>
+            <%= render 'posts/post' , object: @user_liked_posts %>
+        </li>
+
+        <li>
+            <%= render 'users/users_info' , users: @following_users %>
+        </li>
+
+        <li>
+            <%= render 'users/users_info' , users: @followes_users %>
+        </li>
+
+        <li>
+            <div id="japanmap" class="uk-width-1-1"></div>
+        </li>
+    </ul>
+</div>
