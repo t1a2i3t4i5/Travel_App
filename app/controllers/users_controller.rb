@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    # ユーザー指定
     @user = User.find_by(id: params[:id])
-    @post = Post.new
+    # @userの投稿を全て取得
     @posts = @user.posts.all.order(created_at: :desc)
+    # @userのいいねした投稿を全て取得
     @user_liked_posts = @user.liked_posts.order(created_at: :desc)
-    @following = @user.followings.all
-    @followes = @user.followers.all
+    # @userのフォローしているユーザー全て取得
+    @following_users = @user.followings.all
+    # @userをフォローしているユーザー全て取得
+    @followes_users = @user.followers.all
   end
 
   # 投稿を全部削除する

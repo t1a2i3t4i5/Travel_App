@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::RMagick
+  # Include RMagick or MiniMagick support:
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # 本番環境の時と開発環境の時に保存する場所を変えている
   if Rails.env.development?
@@ -26,27 +28,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
-  # 画像の上限を640x480にする
-  process resize_to_limit: [640, 480]
-
   # 保存形式をJPGにする
   process convert: 'jpg'
 
+  # 画像の上限を640x480にする
+  process resize_to_limit: [640, 480]
+
   # サムネイルを生成する設定
   version :thumb do
-    process resize_to_limit: [300, 300]
-  end
-
-  version :thumb100 do
-    process resize_to_limit: [100, 100]
-  end
-
-  version :thumb50 do
-    process resize_to_limit: [50, 50]
-  end
-
-  version :thumb30 do
-    process resize_to_limit: [30, 30]
+    process resize_to_fill: [500, 500, 'center']
   end
 
   # jpg,jpeg,gif,pngしか受け付けない
@@ -56,7 +46,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
   def filename
-    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+    "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
   protected

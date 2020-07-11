@@ -67,6 +67,6 @@ class User < ApplicationRecord
       flg += 1 if name == ero
     end
 
-    errors.add(:name, 'にはエッチな単語は使用できないよ') if flg > 0
+    errors.add(:name, 'にはエッチな単語は使用できないよ') if flg.positive?
   end
 end
