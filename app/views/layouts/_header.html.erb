@@ -1,87 +1,87 @@
 <nav class="uk-navbar-container" uk-navbar uk-sticky="bottom: #offset" style="background-color:#89c7de;">
-  <div class="uk-navbar-left">
-    <ul class="uk-navbar-nav">
-      <li class="uk-active">     
-        <% if user_signed_in? %>
-          <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav" ><span uk-icon="home" /></button>
-        <% else %>
-          <%= link_to root_path do %>
-            <span uk-icon="icon: home"></span>
-          <% end %>
-        <% end %>
-      </li>
-     </ul>
-  </div>
-  
-  <div id="offcanvas-nav" uk-offcanvas="overlay: true">
-    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-      <ul class="uk-nav uk-nav-default">
-      
-      <% if user_signed_in? %>
- 
-        <li class="uk-active uk-padding-small">
-          <%= link_to current_user do %>
-            <span uk-icon="user"></span><%= current_user.name %>
-          <% end %>
-        </li>
-        
-        <li class="uk-active uk-padding-small">
-          <%= link_to new_post_path do %>
-            <span uk-icon="comment"></span>投稿
-          <% end %>
-        </li>
-        
-        <li class="uk-active uk-padding-small">
-          <%= link_to home_pages_index_path do %>
-          <span uk-icon="clock"></span>タイムライン
-          <% end %>
-        </li>
-        
-        <li class="uk-active uk-padding-small">
-          <%= link_to edit_user_registration_path do %>
-          <span uk-icon="pencil"></span>ユーザー編集
-          <% end %>
-        </li>
-        
-        <li class="uk-nav-divider"></li>
-        
-        <li class="uk-active uk-padding-small">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <span uk-icon="sign-out"></span>ログアウト
-          <% end %>
-        </li>
-        
-      <% end %>
-      </ul>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active">
+                <% if user_signed_in? %>
+                <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav"><span uk-icon="home"></span></a>
+                <% else %>
+                <%= link_to root_path do %>
+                <span uk-icon="icon: home"></span>
+                <% end %>
+                <% end %>
+            </li>
+        </ul>
     </div>
-  </div>
-  
-  <% if user_signed_in? %>
-  
-  <div class="uk-navbar-left">
-    <ul class="uk-navbar-nav">
-      <li class="uk-active">
-        <a href="#search" uk-toggle><span uk-icon="icon:search"></span></a>
-      </li>
-    </ul>
-  </div>
+
+    <div id="offcanvas-nav" uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+            <ul class="uk-nav uk-nav-default">
+
+                <% if user_signed_in? %>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to current_user do %>
+                    <span uk-icon="user"></span><%= current_user.name %>
+                    <% end %>
+                </li>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to new_post_path do %>
+                    <span uk-icon="comment"></span>投稿
+                    <% end %>
+                </li>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to home_pages_index_path do %>
+                    <span uk-icon="clock"></span>タイムライン
+                    <% end %>
+                </li>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to edit_user_registration_path do %>
+                    <span uk-icon="settings"></span>ユーザー編集
+                    <% end %>
+                </li>
+
+                <li class="uk-nav-divider"></li>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                    <span uk-icon="sign-out"></span>ログアウト
+                    <% end %>
+                </li>
+
+                <% end %>
+            </ul>
+        </div>
+    </div>
+
+    <% if user_signed_in? %>
+
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active">
+                <a href="#search" uk-toggle><span uk-icon="icon:search"></span></a>
+            </li>
+        </ul>
+    </div>
 
 
 
 
-  <div id="search" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body">
-          <h2 class="uk-modal-title">探す</h2>
-      <%= form_tag(searchs_index_path, method: :get) do %>
-        <%= label_tag(:keyword, "ユーザーと投稿") %>
-        <%= text_field_tag(:keyword, "", class:"uk-search-input") %>
-        <%= submit_tag("Search", class:"uk-button uk-button-small") %>
-      <% end %>
-      </div>
-  </div>
+    <div id="search" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">探す</h2>
+            <%= form_tag(searchs_index_path, method: :get) do %>
+            <%= label_tag(:keyword, "ユーザーと投稿") %>
+            <%= text_field_tag(:keyword, "", class:"uk-search-input") %>
+            <%= submit_tag("Search", class:"uk-button uk-button-small") %>
+            <% end %>
+        </div>
+    </div>
 
-  <% end %>
-  
-  
-  
+    <% end %>
+
+
+
 </nav>

@@ -4,8 +4,11 @@ $(function(){
     var kencode = 1;
     var areas =[];
 
+
+
     <% (1..47).each do |count| %>
-        areas.push({
+        areas.push(
+            {
             code : kencode,
             name: kens[kencode],
             color:
@@ -38,6 +41,7 @@ $(function(){
         fontShadowColor : "#fff",
     });
 });
+
 </script>
 
 <div class="uk-container">
@@ -50,7 +54,7 @@ $(function(){
             <%= render 'relationships/follow', user: @user %>
         </div>
 
-        <%= @user.introduction %>
+        <%= simple_format(@user.introduction) %>
     </div>
 
     <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">

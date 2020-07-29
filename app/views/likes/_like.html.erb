@@ -1,23 +1,21 @@
 <% if current_user.already_liked?(post) %>
-  <%= link_to post_like_path(post_id: post.id ,id: post.likes[0].id), method: :delete, remote: true do %>
-    <%= image_tag("/assets/like") %>
-  <% end %>
+<%= link_to post_like_path(post_id: post.id ,id: post.likes[0].id), method: :delete, remote: true do %>
+<%= image_tag("/assets/like") %>
+<% end %>
 
-  
 <% else %>
 
-  <%= link_to post_likes_path(post.id), method: :post, remote: true do %>
-    <%= image_tag("/assets/unlike") %>
-  <% end %>
-  
+<%= link_to post_likes_path(post.id), method: :post, remote: true do %>
+<%= image_tag("/assets/unlike") %>
+<% end %>
 
 <% end %>
 
 <a class="uk-button uk-button-text" href="#likecount" uk-toggle><%= post.likes.count %></a>
 <div id="likecount" class="uk-flex-top" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-      <button class="uk-modal-close-default" type="button" uk-close></button>
-      <h1 class="uk-heading-small">いいねしたユーザー</h1>
-      <%= render 'users/users_info' , users: post.liked_users %>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h1 class="uk-heading-small">いいねしたユーザー</h1>
+        <%= render 'users/users_info' , users: post.liked_users %>
     </div>
 </div>

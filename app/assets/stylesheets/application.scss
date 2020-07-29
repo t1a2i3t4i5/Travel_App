@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
  @import "uikit.min.css";
 
@@ -38,8 +36,10 @@ footer {
 }
 
 #japanmap canvas{
-  position: relative;
-  margin: 10% 25% 0 25%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 5% auto auto;
 }
 
 /*ユーザーのプロフィール画像(ユーザーページのでかい画像以外）*/
