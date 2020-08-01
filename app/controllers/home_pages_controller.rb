@@ -8,6 +8,6 @@ class HomePagesController < ApplicationController
 
     # フォローしているユーザーの投稿を降順で取得
     @follow_users = current_user.followings.all
-    @posts = Post.where(user_id: @follow_users).order(created_at: :desc)
+    @posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(visited_at: :desc)
   end
 end
