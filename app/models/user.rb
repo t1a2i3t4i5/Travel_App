@@ -23,9 +23,12 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :user, dependent: :destroy
 
+  # comment機能関連付け
+  has_many :comments, dependent: :destroy
+
   # deviseの設定
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise  :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :validatable
 
   def follow(other_user)
     relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
@@ -43,6 +46,11 @@ class User < ApplicationRecord
   # すでにいいねしているかの判定
   def already_liked?(post)
     likes.exists?(post_id: post.id)
+  end
+
+  # すでにコメントしているかの判定
+  def already_comment?(post)
+    comments.exists?(post_id: post.id)
   end
 
   # deviseのパスワードだけ変更できない問題を解決してくれたメソッド

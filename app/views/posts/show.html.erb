@@ -1,58 +1,69 @@
 <div class="uk-container">
-    <div class="uk-child-width-1-2@m" uk-grid>
-        <div class="uk-padding">
-            <div class="uk-card uk-card-default">
-                <div class="uk-card-header uk-background-muted uk-padding-small">
-                    <div class="uk-grid-small uk-flex" uk-grid>
-                        <div class="uk-width-auto">
-                            <%= link_to @post.user do %>
-                            <%=image_tag @post.user.image.url, class:"user_image" %>
+    <div class="uk-flex uk-flex-wrap">
+        <div class="uk-width-auto@s uk-flex">
+            <div class="uk-padding">
+                <div class="uk-card uk-card-default show-post">
+                    <div class="uk-card-header uk-background-muted uk-padding-small">
+                        <div class="uk-grid-small uk-flex" uk-grid>
+                            <div class="uk-width-auto">
+                                <%= link_to @post.user do %>
+                                <%=image_tag @post.user.image.url, class:"user_image" %>
+                                <% end %>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><%= link_to @post.user.name, @post.user, class:"uk-link-heading" %></h3>
+                                <p class="uk-text-meta uk-margin-remove-top"><%= Date.strptime(@post.visited_at, '%Y-%m-%d').strftime('%Y年%m月%d日') %></p>
+                            </div>
+                            <div class="uk-width-expand uk-text-right">
+                                <%= link_to @post.ken.name, @post.ken, class:"uk-margin-remove-bottom" %>
+                                <p class="uk-margin-remove-top uk-link-muted" uk-tooltip="title: <%= "#{@post.place}をGoogleで検索します" %>; pos: bottom-right">
+                                    <%= link_to"http://www.google.co.jp/search?q=#{@post.place}", target: :_blank do %>
+                                    <span uk-icon="link"></span>
+                                    <%= @post.place %>
+                                    <% end %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" uk-card-media-bottom uk-padding-small">
+                        <div uk-lightbox="animation: slide" class="uk-text-center">
+                            <a href='<%= @post.image.url %>'>
+                                <%= image_tag @post.image.thumb.url, class:"uk-border-rounded"%>
+                            </a>
+                        </div>
+                        <div id="likes_buttons_<%= @post.id %>">
+                            <%= render 'likes/like' , post: @post %>
+                        </div>
+                    </div>
+                    <div class="uk-card-footer uk-background-muted">
+                        <%= simple_format(@post.content) %>
+                        <div>
+                            <% @post.tag_list.each do |tag| %>
+                            <%= link_to tags_show_path(tag_name: tag) do %>
+                            <span class="uk-badge"><%= tag %></span>
+                            <% end %>
                             <% end %>
                         </div>
-                        <div class="uk-width-1-2">
-                            <h3 class="uk-card-title uk-margin-remove-bottom"><%= link_to @post.user.name, @post.user, class:"uk-link-heading" %></h3>
-                            <p class="uk-text-meta uk-margin-remove-top"><%= Date.strptime(@post.visited_at, '%Y-%m-%d').strftime('%Y年%m月%d日') %></p>
-                        </div>
-                        <div class="uk-width-expand uk-text-right">
-                            <%= link_to @post.ken.name, @post.ken, class:"uk-margin-remove-bottom" %>
-                            <p class="uk-margin-remove-top uk-link-muted" uk-tooltip="title: <%= "#{@post.place}をGoogleで検索します" %>; pos: bottom-right">
-                                <%= link_to"http://www.google.co.jp/search?q=#{@post.place}", target: :_blank do %>
-                                <span uk-icon="link"></span>
-                                <%= @post.place %>
-                                <% end %>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" uk-card-media-bottom uk-padding-small">
-                    <div uk-lightbox="animation: slide" class="uk-text-center">
-                        <a href='<%= @post.image.url %>'>
-                            <%= image_tag @post.image.thumb.url, class:"uk-border-rounded"%>
-                        </a>
-                    </div>
-                    <div id="likes_buttons_<%= @post.id %>">
-                        <%= render 'likes/like' , post: @post %>
-                    </div>
-                </div>
-                <div class="uk-card-footer uk-background-muted">
-                    <%= simple_format(@post.content) %>
-                    <div>
-                        <% @post.tag_list.each do |tag| %>
-                        <%= link_to tags_show_path(tag_name: tag) do %>
-                        <span class="uk-badge"><%= tag %></span>
+                        <% if current_user == @post.user %>
+                        <%= link_to @post , method: :delete, data: { confirm: '削除しますか？' } do %>
+                        <span class="uk-float-right" uk-icon="icon: trash; ratio: 1.5"></span>
+                        <% end %>
+                        <%= link_to edit_post_path(@post) do %>
+                        <span class="uk-float-right" uk-icon="icon: pencil; ratio: 1.5"></span>
                         <% end %>
                         <% end %>
                     </div>
-                    <% if current_user == @post.user %>
-                    <%= link_to @post , method: :delete, data: { confirm: '削除しますか？' } do %>
-                    <span class="uk-float-right" uk-icon="icon: trash; ratio: 1.5"></span>
-                    <% end %>
-                    <%= link_to edit_post_path(@post) do %>
-                    <span class="uk-float-right" uk-icon="icon: pencil; ratio: 1.5"></span>
-                    <% end %>
-                    <% end %>
                 </div>
             </div>
+        </div>
+        <div class="uk-width-expand uk-padding">
+            <div class="comment-create uk-margin-bottom">
+                <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+            </div>
+            <div id="comments_area">
+                <%= render partial: 'comments/index', locals: { comments: @comments } %>
+            </div>
+            <a href="#" uk-totop uk-scroll></a>
         </div>
     </div>
 </div>

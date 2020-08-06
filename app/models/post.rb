@@ -26,6 +26,9 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
+  # comment機能の関連付け
+  has_many :comments, dependent: :destroy
+
   # バリデーション
   def check_content
     eros = %w[sex ちんこ まんこ おっぱい]
