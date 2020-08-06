@@ -54,3 +54,9 @@ footer {
   margin: 5% 25% 0 25%;
   padding-bottom: 1em;
 }
+
+.show-post{
+  position: -webkit-sticky;
+  position: sticky;
+  top :100px;
+}

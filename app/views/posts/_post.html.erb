@@ -10,10 +10,18 @@
                 <%= post.user.name %>
                 <p class="uk-position-center">
                     <% if current_user.already_liked?(post) %>
-                    <%= image_tag("/assets/like") %>
+                    <span uk-icon="icon:heart; ratio:2.5" class="uk-text-danger"></span>
                     <% else %>
-                    <%= image_tag("/assets/unlike") %>
-                    <% end %><%= post.likes.count %>
+                    <span uk-icon="icon:heart; ratio:2.5"></span>
+                    <% end %>
+                    <%= post.likes.count %>
+
+                    <% if current_user.already_comment?(post) %>
+                    <span uk-icon="icon:comment; ratio:2.5" class="uk-text-danger"></span>
+                    <% else %>
+                    <span uk-icon="icon:comment; ratio:2.5"></span>
+                    <% end %>
+                    <%= post.comments.count %>
                 </p>
             </div>
         </div>

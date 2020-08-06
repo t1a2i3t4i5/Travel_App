@@ -1,12 +1,12 @@
 <% if current_user.already_liked?(post) %>
 <%= link_to post_like_path(post_id: post.id ,id: post.likes[0].id), method: :delete, remote: true do %>
-<%= image_tag("/assets/like") %>
+<span uk-icon="icon:heart; ratio:2.5" class="uk-text-danger"></span>
 <% end %>
 
 <% else %>
 
 <%= link_to post_likes_path(post.id), method: :post, remote: true do %>
-<%= image_tag("/assets/unlike") %>
+<span uk-icon="icon:heart; ratio:2.5" class="uk-text-emphasis"></span>
 <% end %>
 
 <% end %>
