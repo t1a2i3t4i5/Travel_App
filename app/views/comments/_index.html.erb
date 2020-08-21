@@ -1,6 +1,6 @@
 <% comments.each do |comment| %>
 <% unless comment.id.nil? %>
-<article class="uk-comment uk-comment-primary uk-margin uk-visible-toggle" tabindex="-1">
+<article class="uk-comment uk-comment-primary uk-margin" tabindex="-1">
     <header class="uk-comment-header uk-position-relative">
         <div class="uk-grid-medium uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
@@ -13,11 +13,13 @@
                 <p class="uk-comment-meta uk-margin-remove-top"><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             </div>
         </div>
-        <div class="uk-position-top-right uk-position-small uk-hidden-hover">
+        <% if current_user == comment.user %>
+        <div class="uk-position-top-right uk-position-small">
             <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: '削除しますか？' }, remote: true do %>
             <span class="uk-float-right" uk-icon="icon: trash; ratio: 1.5"></span>
             <% end %>
         </div>
+        <% end %>
     </header>
     <div class="uk-comment-body">
         <p><%= simple_format(comment.comment) %></p>

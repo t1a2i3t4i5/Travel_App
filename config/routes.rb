@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
-    root to: 'devise/sessions#new'
+    root to: 'home_pages#index'
   end
 
   get 'home_pages/index' => 'home_pages#index'

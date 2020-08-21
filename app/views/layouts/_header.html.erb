@@ -2,13 +2,7 @@
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
             <li class="uk-active">
-                <% if user_signed_in? %>
                 <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav"><span uk-icon="home"></span></a>
-                <% else %>
-                <%= link_to root_path do %>
-                <span uk-icon="icon: home"></span>
-                <% end %>
-                <% end %>
             </li>
         </ul>
     </div>
@@ -51,12 +45,31 @@
                     <% end %>
                 </li>
 
+                <% else %>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to home_pages_index_path do %>
+                    <span uk-icon="home"></span>TOP
+                    <% end %>
+                </li>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to new_user_session_path do %>
+                    <span uk-icon="sign-in"></span>ログイン
+                    <% end %>
+                </li>
+
+                <li class="uk-active uk-padding-small">
+                    <%= link_to  new_user_registration_path do %>
+                    <span uk-icon="plus-circle"></span>アカウント作成
+                    <% end %>
+                </li>
+
                 <% end %>
+
             </ul>
         </div>
     </div>
-
-    <% if user_signed_in? %>
 
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
@@ -65,9 +78,6 @@
             </li>
         </ul>
     </div>
-
-
-
 
     <div id="search" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
@@ -79,9 +89,4 @@
             <% end %>
         </div>
     </div>
-
-    <% end %>
-
-
-
 </nav>
