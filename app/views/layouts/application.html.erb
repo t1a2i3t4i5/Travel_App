@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html>
 
-  <%= render 'layouts/head' %>
+<%= render 'layouts/head' %>
 
-  <body>
+<body>
 
     <%= render 'layouts/header' %>
     <%# アラート機能 #%>
     <% flash.each do  |message_type, message| %>
-        <div class = "uk-alert uk-alert-<%= message_type %>"><%= message %></div>
+    <div class="uk-alert uk-alert-<%= message_type %>"><%= message %></div>
     <% end %>
 
 
     <%= yield %>
 
-    <% if !user_signed_in? %>
-     <%= render 'layouts/footer' %>
-    <% end %>
-  </body>
-
-
-
-
+    <%= render 'layouts/footer' %>
+</body>
 
 </html>

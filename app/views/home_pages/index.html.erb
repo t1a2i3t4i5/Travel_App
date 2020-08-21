@@ -1,7 +1,31 @@
-<div class="uk-padding-small">
-    <p class="uk-heading-small uk-text-lighter uk-text-center">タイムライン</p>
-</div>
-
 <div class="uk-container uk-container-small">
-    <%= render 'posts/timeline' , object: @posts %>
+    <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
+        <% if user_signed_in? %>
+        <li><a href="#">タイムライン</a></li>
+        <% end %>
+        <li><a href="#">新着投稿</a></li>
+        <li><a href="#">人気投稿</a></li>
+        <li><a href="#">コメント多い順</a></li>
+        <li><a href="#">都道府県順</a></li>
+    </ul>
+
+    <ul class="uk-switcher">
+        <% if user_signed_in? %>
+        <li>
+            <%= render 'posts/timeline' , object: @timeline_posts %>
+        </li>
+        <% end %>
+        <li>
+            <%= render 'posts/timeline' , object: @created_at_desc_posts %>
+        </li>
+        <li>
+            <%= render 'posts/timeline' , object: @popular_posts %>
+        </li>
+        <li>
+            <%= render 'posts/timeline' , object: @comment_count_desc_posts %>
+        </li>
+        <li>
+            <%= render 'posts/timeline' , object: @prefectures_id_asc_posts %>
+        </li>
+    </ul>
 </div>

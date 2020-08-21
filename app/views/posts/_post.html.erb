@@ -9,6 +9,7 @@
                 <%= image_tag post.user.image.url, class:"user_image" %>
                 <%= post.user.name %>
                 <p class="uk-position-center">
+                    <% if user_signed_in? %>
                     <% if current_user.already_liked?(post) %>
                     <span uk-icon="icon:heart; ratio:2.5" class="uk-text-danger"></span>
                     <% else %>
@@ -22,6 +23,12 @@
                     <span uk-icon="icon:comment; ratio:2.5"></span>
                     <% end %>
                     <%= post.comments.count %>
+                    <% else %>
+                    <span uk-icon="icon:heart; ratio:2.5"></span>
+                    <%= post.likes.count %>
+                    <span uk-icon="icon:comment; ratio:2.5"></span>
+                    <%= post.comments.count %>
+                    <% end %>
                 </p>
             </div>
         </div>

@@ -14,11 +14,12 @@
  @import "uikit.min.css";
 
 footer {
+  position: absolute;
+  // bottom: 0;
   width: 100%;
+  height: 40px;
   text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  bottom: 0; /*下に固定*/
+  background-color:#89c7de;
 }
 
 .jaravlate{
@@ -56,6 +57,7 @@ footer {
 }
 
 .show-post{
+  align-self: baseline;
   position: -webkit-sticky;
   position: sticky;
   top :100px;

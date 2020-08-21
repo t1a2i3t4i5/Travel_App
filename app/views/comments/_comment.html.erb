@@ -1,0 +1,13 @@
+<% if user_signed_in? && current_user.already_liked?(post) %>
+
+<span uk-icon="icon:comment; ratio:2.5" class="uk-text-danger"></span>
+
+<% else %>
+
+<span uk-icon="icon:comment; ratio:2.5" class="uk-text-emphasis"></span>
+
+<% end %>
+
+<span class="uk-text-middle">
+	<%= post.comments.count %>
+</span>
