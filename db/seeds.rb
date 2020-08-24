@@ -12,3 +12,15 @@ end
 guest_user = User.find_by(email: "guest@example.com")
 
 User.create!(email: "guest@example.com", password: "guest1") unless guest_user
+
+if User.count < 10
+  100.times do |_n|
+    name = Faker::Name.name
+    email = Faker::Internet.email
+    password = "password"
+    User.create!(name: name,
+                 email: email,
+                 password: password,
+                 password_confirmation: password)
+  end
+end

@@ -49,9 +49,7 @@ $(function(){
             <%= image_tag @user.image.thumb.url ,class:"uk-border-circle", width:100, height:100 %><%= @user.name %>
         </div>
 
-        <div class="uk-float-right">
-            <%= render 'relationships/follow', user: @user %>
-        </div>
+        <%= render 'relationships/follow', user: @user %>
 
         <%= simple_format(@user.introduction) %>
     </div>
@@ -59,26 +57,26 @@ $(function(){
     <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
         <li><a href="#">投稿<%= @user.posts.count %></a></li>
         <li><a href="#">いいね<%= @user.likes.count %></a></li>
-        <li><a href="#">フォロー<%= @user.followings.count %></a></li>
-        <li><a href="#">フォロワー<%= @user.followers.count %></a></li>
+        <li><a href="#" id="followings_<%= @user.id %>">フォロー<%= @user.followings.count %></a></li>
+        <li><a href="#" id="followers_<%= @user.id %>">フォロワー<%= @user.followers.count %></a></li>
         <li><a href="#">日本地図<%= visited_ken_count(@user) %>/47</a></li>
     </ul>
 
     <ul class="uk-switcher">
-        <li>
+        <li id="user-post">
             <%= render 'posts/post' , object: @posts %>
         </li>
 
-        <li>
+        <li id="user-likes-post">
             <%= render 'posts/post' , object: @user_liked_posts %>
         </li>
 
-        <li>
-            <%= render 'users/users_info' , users: @following_users %>
+        <li id="followings-users">
+            <%= render 'users/users_info' , users: @followings_users %>
         </li>
 
-        <li>
-            <%= render 'users/users_info' , users: @followes_users %>
+        <li id="followers-users">
+            <%= render 'users/users_info' , users: @followers_users %>
         </li>
 
         <li>
