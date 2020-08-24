@@ -7,6 +7,7 @@ class HomePagesController < ApplicationController
     if user_signed_in?
       @follow_users = current_user.followings.all
       @timeline_posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(visited_at: :desc)
+      @timeline_posts = @timeline_posts.page(params[:page])
     end
     @created_at_desc_posts = Post.all.order(created_at: :desc)
     @popular_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
