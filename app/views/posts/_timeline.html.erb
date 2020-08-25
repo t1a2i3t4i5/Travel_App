@@ -57,6 +57,11 @@
 </div>
 <% end %>
 <%= paginate object %>
+  <div class="page-load-status">
+    <div class="infinite-scroll-request">
+        <div uk-spinner></div>
+    </div>
+  </div>
 <% else %>
 <div class="uk-text-center">投稿が一つもないね</div>
 <% end %>

@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
-    root to: 'home_pages#index'
+    root to: 'posts#index'
   end
 
   get 'home_pages/index' => 'home_pages#index'
@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
+    collection do
+      get :new_arrival
+      get :popular
+    end
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create destroy]
   end

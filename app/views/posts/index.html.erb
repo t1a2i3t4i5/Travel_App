@@ -1,0 +1,38 @@
+<script>
+$(document).on("turbolinks:load", function() {
+  if ($("nav.pagination a[rel=next]").length){
+    $(".post-list").infiniteScroll({
+      path: "nav.pagination a[rel=next]",
+      append: ".post-list",
+      elementScroll: true,
+      history: true,
+      prefill: false,
+      status: ".page-load-status",
+      hideNav: ".pagination"
+    })
+  }
+})
+</script>
+<div class="uk-container uk-container-small">
+    <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
+        <li><%= link_to "タイムライン", posts_path, remote: true %></li>
+        <li><%= link_to "新着投稿", new_arrival_posts_path, remote: true %></li>
+        <li><%= link_to "人気投稿", popular_posts_path, remote: true %></li>
+    </ul>
+
+    <ul class="uk-switcher">
+        <% if user_signed_in? %>
+        <li id="timeline_posts" class="post-list">
+          <%= render 'posts/timeline' , object: @timeline_posts %>
+        </li>
+        <% else %>
+          <div class="uk-text-center">ろぐいんしてね</div>
+        <% end %>
+        <li id="new_arrival_posts" class="post-list">
+          <div uk-spinner></div>
+        </li>
+        <li id="popular_posts" class="post-list">
+          <div uk-spinner></div>
+        </li>
+    </ul>
+</div>

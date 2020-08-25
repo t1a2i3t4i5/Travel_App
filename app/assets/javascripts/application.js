@@ -16,6 +16,7 @@
 //= require jcanvas
 //= require uikit.min.js
 //= require uikit-icons.min.js
+//= require infinite-scroll.pkgd.min
 
 
 $( document ).on('turbolinks:load', function() {
