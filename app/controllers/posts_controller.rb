@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
-  
-  def index 
-      @like = Like.new
+  before_action :authenticate_user!, only: %i[new edit create destroy]
+
+  def index
+    @like = Like.new
     if user_signed_in?
       @follow_users = current_user.followings.all
       @timeline_posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(visited_at: :desc)
@@ -15,13 +15,15 @@ class PostsController < ApplicationController
   def new_arrival
     @new_arrival_posts = Post.all.order(created_at: :desc)
     @new_arrival_posts = @new_arrival_posts.page(params[:page]).per(10)
+    render 'posts/index' unless request.xhr?
   end
-  
+
   def popular
     @popular_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
     @popular_posts = Kaminari.paginate_array(@popular_posts).page(params[:page]).per(10)
+    render 'posts/index' unless request.xhr?
   end
-  
+
   def new
     @post = Post.new
   end

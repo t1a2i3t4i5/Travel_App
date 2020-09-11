@@ -4,7 +4,6 @@ $(function(){
     var kencode = 1;
     var areas =[];
 
-
     <% (1..47).each do |count| %>
         areas.push(
             {
@@ -55,28 +54,46 @@ $(function(){
     </div>
 
     <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
-        <li><a href="#">投稿<%= @user.posts.count %></a></li>
-        <li><a href="#">いいね<%= @user.likes.count %></a></li>
-        <li><a href="#" id="followings_<%= @user.id %>">フォロー<%= @user.followings.count %></a></li>
-        <li><a href="#" id="followers_<%= @user.id %>">フォロワー<%= @user.followers.count %></a></li>
+        <li><%= link_to "投稿#{@user.posts.count}", @user, remote: true %></li>
+        <li class=<%= action_name == 'likes_post' ? "uk-active" : "" %>>
+            <%= link_to "いいね#{@user.likes.count}", liked_posts_user_path(@user), remote: true %>
+        </li>
+        <li class=<%= action_name == 'followings_user' ? "uk-active" : "" %>>
+            <%= link_to "フォロー#{@user.followings.count}", followings_user_path(@user),id: "followings_#{@user.id}", remote: true %>
+        </li>
+        <li class=<%= action_name == 'user_followers_user' ? "uk-active" : "" %>>
+            <%= link_to "フォロワー#{@user.followers.count}", followers_user_path(@user),id: "followers_#{@user.id}", remote: true %>
+        </li>
         <li><a href="#">日本地図<%= visited_ken_count(@user) %>/47</a></li>
     </ul>
 
     <ul class="uk-switcher">
-        <li id="user-post">
-            <%= render 'posts/post' , object: @posts %>
+        <li id="user_post">
+            <%= render 'posts/post' , posts: @posts %>
         </li>
 
-        <li id="user-likes-post">
-            <%= render 'posts/post' , object: @user_liked_posts %>
+        <li id="user_likes_post">
+            <% if @likes_post %>
+            <%= render 'posts/post', posts: @likes_post %>
+            <% else %>
+            <div uk-spinner></div>
+            <% end %>
         </li>
 
-        <li id="followings-users">
-            <%= render 'users/users_info' , users: @followings_users %>
+        <li id="user_followings">
+            <% if @followings_user %>
+            <%= render 'users/users_info', users: @followings_user %>
+            <% else %>
+            <div uk-spinner></div>
+            <% end %>
         </li>
 
-        <li id="followers-users">
-            <%= render 'users/users_info' , users: @followers_users %>
+        <li id="user_followers">
+            <% if @followers_user %>
+            <%= render 'users/users_info', users: @followers_user %>
+            <% else %>
+            <div uk-spinner></div>
+            <% end %>
         </li>
 
         <li>

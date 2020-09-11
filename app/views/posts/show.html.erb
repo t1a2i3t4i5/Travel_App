@@ -18,7 +18,8 @@
                             </div>
                             <div class="uk-width-expand uk-text-right">
                                 <%= link_to @post.ken.name, @post.ken, class:"uk-margin-remove-bottom" %>
-                                <p class="uk-margin-remove-top uk-link-muted uk-text-truncate" uk-tooltip="title: <%= "#{@post.place}をGoogleで検索します" %>; pos: bottom-right">
+                                <p class="uk-margin-remove-top uk-link-muted uk-text-truncate"
+                                    uk-tooltip="title: <%= "#{@post.place}をGoogleで検索します" %>; pos: bottom-right">
                                     <%= link_to"http://www.google.co.jp/search?q=#{@post.place}", target: :_blank do %>
                                     <span uk-icon="link"></span>
                                     <%= @post.place %>
@@ -33,8 +34,13 @@
                                 <%= image_tag @post.image.thumb.url, class:"uk-border-rounded"%>
                             </a>
                         </div>
-                        <div id="likes_buttons_<%= @post.id %>">
-                            <%= render 'likes/like' , post: @post %>
+                        <div class="uk-flex">
+                            <div id="likes_buttons_<%= @post.id %>">
+                                <%= render 'likes/like' , post: @post %>
+                            </div>
+                            <div>
+                                <%= render 'comments/comment' , post: @post %>
+                            </div>
                         </div>
                     </div>
                     <div class="uk-card-footer uk-background-muted">

@@ -2,7 +2,8 @@
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
             <li class="uk-active">
-                <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav"><span uk-icon="home"></span></a>
+                <a href class="uk-margin-small-right" uk-toggle="target: #offcanvas-nav"><span
+                        uk-icon="home"></span></a>
             </li>
         </ul>
     </div>
@@ -26,7 +27,7 @@
                 </li>
 
                 <li class="uk-active uk-padding-small">
-                    <%= link_to home_pages_index_path do %>
+                    <%= link_to posts_path do %>
                     <span uk-icon="clock"></span>タイムライン
                     <% end %>
                 </li>
@@ -48,7 +49,7 @@
                 <% else %>
 
                 <li class="uk-active uk-padding-small">
-                    <%= link_to home_pages_index_path do %>
+                    <%= link_to posts_path do %>
                     <span uk-icon="home"></span>TOP
                     <% end %>
                 </li>
@@ -81,12 +82,8 @@
 
     <div id="search" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            <h2 class="uk-modal-title">探す</h2>
-            <%= form_tag(searchs_index_path, method: :get) do %>
-            <%= label_tag(:keyword, "ユーザーと投稿") %>
-            <%= text_field_tag(:keyword, "", class:"uk-search-input") %>
-            <%= submit_tag("Search", class:"uk-button uk-button-small") %>
-            <% end %>
+            <h2 class="uk-modal-title">検索</h2>
+            <%= render 'searchs/search_form'%>
         </div>
     </div>
 </nav>

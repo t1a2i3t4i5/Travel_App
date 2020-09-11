@@ -17,9 +17,10 @@
 //= require uikit.min.js
 //= require uikit-icons.min.js
 //= require infinite-scroll.pkgd.min
+//= require infinite_scroll_option.js
 
 
-$( document ).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function () {
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -31,7 +32,7 @@ $( document ).on('turbolinks:load', function() {
     }
   }
 
-  $("#user_img").change(function(){
+  $("#user_img").change(function () {
     $('#user_img_prev').removeClass('hidden');
     $('.user_present_img').remove();
     readURL(this);

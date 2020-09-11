@@ -1,9 +1,7 @@
-<div class="uk-text-center">
-  <div class="uk-heading-small uk-text-lighter">
-    <strong><%= @tag_name %></strong>のタグが付いた投稿一覧
-  </div>
-</div>
-
 <div class="uk-container">
-  <%= render 'posts/post' , object: @posts %>
+  <div class="uk-text-center">
+    <span class="uk-badge"><%= @tag_name %></span>のタグが付いた投稿一覧
+  </div>
+
+  <%= render 'posts/post' , posts: @posts %>
 </div>

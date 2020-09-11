@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+$('#timeline_posts').html("<%= escape_javascript(render partial: 'posts/timeline', locals: {posts: @timeline_posts}) %>");
+<% else %>
+$('#timeline_posts').html('<div class="uk-text-center">ログイン時に使用可能です。</div>');
+<% end %>
+
+$('#new_arrival_posts').html("<div uk-spinner></div>");
+$('#popular_posts').html("<div uk-spinner></div>");

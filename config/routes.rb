@@ -17,14 +17,13 @@ Rails.application.routes.draw do
     end
     member do
       # /users/:id/ ...
-      get :following, :followers
+      get :liked_posts, :followings, :followers
     end
   end
 
   resources :posts do
     collection do
-      get :new_arrival
-      get :popular
+      get :new_arrival, :popular
     end
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create destroy]

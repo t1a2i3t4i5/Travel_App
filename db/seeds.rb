@@ -33,10 +33,10 @@ if Post.count < 10
     place = "hogehoge"
     visited_at = "2020-08-25"
     Post.create!(content: content,
-                user_id: user_id,
-                ken_id: ken_id,
-                place: place,
-                image: open("./app/assets/images/default.jpg"),
-                visited_at: visited_at)
+                 user_id: user_id,
+                 ken_id: ken_id,
+                 place: place,
+                 image: open("./app/assets/images/default.jpg"),
+                 visited_at: visited_at)
   end
 end
