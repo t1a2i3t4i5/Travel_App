@@ -1,7 +1,7 @@
-<div class="uk-flex uk-flex-wrap">
-    <% if object.any? %>
-    <% object.each do |post| %>
-    <div class="uk-width-1-3 uk-padding-small">
+<% if posts.any? %>
+<div class="uk-flex uk-flex-wrap item-list">
+    <% posts.each do |post| %>
+    <div class="uk-width-1-3 uk-padding-small item-card">
         <%= link_to post do %>
         <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
             <%= image_tag post.image.thumb.url, class:"uk-border-rounded"%>
@@ -16,7 +16,6 @@
                     <span uk-icon="icon:heart; ratio:2.5"></span>
                     <% end %>
                     <%= post.likes.count %>
-
                     <% if current_user.already_comment?(post) %>
                     <span uk-icon="icon:comment; ratio:2.5" class="uk-text-danger"></span>
                     <% else %>
@@ -35,7 +34,9 @@
         <% end %>
     </div>
     <% end %>
-    <% else %>
-    <div class="uk-text-center">投稿が一つもないね</div>
-    <% end %>
 </div>
+<%= paginate posts %>
+<%= render 'shared/infinitescroll' %>
+<% else %>
+<div class="uk-text-center">投稿がないです</div>
+<% end %>

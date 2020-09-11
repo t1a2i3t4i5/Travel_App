@@ -11,7 +11,7 @@ end
 # ゲストユーザー作成
 guest_user = User.find_by(email: "guest@example.com")
 
-User.create!(email: "guest@example.com", password: "guest1") unless guest_user
+User.create!(email: "guest@example.com", password: "guest1", name: "ゲスト") unless guest_user
 
 if User.count < 10
   100.times do |_n|
@@ -22,5 +22,21 @@ if User.count < 10
                  email: email,
                  password: password,
                  password_confirmation: password)
+  end
+end
+
+if Post.count < 10
+  100.times do |_n|
+    content = "hogehoge"
+    user_id = 1
+    ken_id = 1
+    place = "hogehoge"
+    visited_at = "2020-08-25"
+    Post.create!(content: content,
+                 user_id: user_id,
+                 ken_id: ken_id,
+                 place: place,
+                 image: open("./app/assets/images/default.jpg"),
+                 visited_at: visited_at)
   end
 end

@@ -20,10 +20,3 @@
 
 
 <a class="uk-button uk-button-text uk-text-middle" href="#likecount<%= post.id %>" uk-toggle><%= post.likes.count %></a>
-<div id="likecount<%= post.id %>" class="uk-flex-top" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <h1 class="uk-heading-small">いいねしたユーザー</h1>
-        <%= render 'users/users_info' , users: post.liked_users %>
-    </div>
-</div>

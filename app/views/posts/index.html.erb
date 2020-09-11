@@ -1,0 +1,37 @@
+<div class="uk-container uk-container-small uk-margin-bottom">
+  <ul class="uk-child-width-expand uk-background-default uk-tab" uk-tab="animation: uk-animation-fade">
+    <li><%= link_to "タイムライン", posts_path, remote: true %></li>
+    <li class=<%= action_name == 'new_arrival' ? "uk-active" : "" %>>
+      <%= link_to "新着投稿", new_arrival_posts_path, remote: true %>
+    </li>
+    <li class=<%= action_name == 'popular' ? "uk-active" : "" %>>
+      <%= link_to "人気投稿", popular_posts_path, remote: true %>
+    </li>
+  </ul>
+
+  <ul class=" uk-switcher">
+    <li id="timeline_posts">
+      <% if user_signed_in? && @timeline_posts %>
+      <%= render 'posts/timeline', posts: @timeline_posts %>
+      <% else %>
+      <div class="uk-text-center">ログイン時に使用可能です。</div>
+      <% end %>
+    </li>
+
+    <li id="new_arrival_posts">
+      <% if @new_arrival_posts %>
+      <%= render 'posts/timeline', posts: @new_arrival_posts %>
+      <% else %>
+      <div uk-spinner></div>
+      <% end %>
+    </li>
+
+    <li id="popular_posts">
+      <% if @popular_posts %>
+      <%= render 'posts/timeline', posts: @popular_posts %>
+      <% else %>
+      <div uk-spinner></div>
+      <% end %>
+    </li>
+  </ul>
+</div>

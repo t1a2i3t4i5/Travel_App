@@ -1,4 +1,4 @@
-<% if user_signed_in? && current_user.already_liked?(post) %>
+<% if user_signed_in? && current_user.already_comment?(post) %>
 
 <span uk-icon="icon:comment; ratio:2.5" class="uk-text-danger"></span>
 

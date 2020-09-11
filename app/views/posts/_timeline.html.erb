@@ -1,61 +1,65 @@
-<% if object.any? %>
-<% object.each do |post| %>
-<div class="uk-card uk-card-default uk-margin-bottom">
-    <div class="uk-card-header uk-background-muted uk-padding-small">
-        <div class="uk-grid-small uk-flex" uk-grid>
-            <div class="uk-width-auto">
-                <%= link_to post.user do %>
-                <%=image_tag post.user.image.url, class:"user_image" %>
+<% if posts.any? %>
+<div class="item-list">
+    <% posts.each do |post| %>
+    <div class="uk-card uk-card-default uk-margin-bottom item-card">
+        <div class="uk-card-header uk-background-muted uk-padding-small">
+            <div class="uk-grid-small uk-flex" uk-grid>
+                <div class="uk-width-auto">
+                    <%= link_to post.user do %>
+                    <%=image_tag post.user.image.url, class:"user_image" %>
+                    <% end %>
+                </div>
+                <div class="uk-width-1-2">
+                    <h3 class="uk-card-title uk-margin-remove-bottom">
+                        <%= link_to post.user.name, post.user, class:"uk-link-heading" %></h3>
+                    <p class="uk-text-meta uk-margin-remove-top">
+                        <%= Date.strptime(post.visited_at, '%Y-%m-%d').strftime('%Y年%m月%d日') %></p>
+                </div>
+                <div class="uk-width-expand uk-text-right">
+                    <%= link_to post.ken.name, post.ken, class:"uk-margin-remove-bottom" %>
+                    <p class="uk-margin-remove-top uk-link-muted uk-text-truncate"
+                        uk-tooltip="title: <%= "#{post.place}をGoogleで検索します" %>; pos: bottom-right">
+                        <%= link_to"http://www.google.co.jp/search?q=#{post.place}", target: :_blank do %>
+                        <span uk-icon="link"></span>
+                        <%= post.place %>
+                        <% end %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class=" uk-card-media-bottom uk-padding-small">
+            <div class="uk-text-center">
+                <%= link_to post do %>
+                <%= image_tag post.image.thumb.url, class:"uk-border-rounded"%>
                 <% end %>
             </div>
-            <div class="uk-width-1-2">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                    <%= link_to post.user.name, post.user, class:"uk-link-heading" %></h3>
-                <p class="uk-text-meta uk-margin-remove-top">
-                    <%= Date.strptime(post.visited_at, '%Y-%m-%d').strftime('%Y年%m月%d日') %></p>
+            <div class="uk-flex">
+                <div id="likes_buttons_<%= post.id %>">
+                    <%= render 'likes/like' , post: post %>
+                </div>
+                <div>
+                    <%= render 'comments/comment' , post: post %>
+                </div>
             </div>
-            <div class="uk-width-expand uk-text-right">
-                <%= link_to post.ken.name, post.ken, class:"uk-margin-remove-bottom" %>
-                <p class="uk-margin-remove-top uk-link-muted uk-text-truncate"
-                    uk-tooltip="title: <%= "#{post.place}をGoogleで検索します" %>; pos: bottom-right">
-                    <%= link_to"http://www.google.co.jp/search?q=#{post.place}", target: :_blank do %>
-                    <span uk-icon="link"></span>
-                    <%= post.place %>
-                    <% end %>
-                </p>
-            </div>
+
         </div>
-    </div>
-    <div class=" uk-card-media-bottom uk-padding-small">
-        <div class="uk-text-center">
-            <%= link_to post do %>
-            <%= image_tag post.image.thumb.url, class:"uk-border-rounded"%>
-            <% end %>
-        </div>
-        <div class="uk-flex">
-            <div id="likes_buttons_<%= post.id %>">
-                <%= render 'likes/like' , post: post %>
+        <div class="uk-card-footer uk-background-muted uk-margin-remove">
+            <div class="uk-text-break">
+                <%= simple_format(post.content) %>
             </div>
             <div>
-                <%= render 'comments/comment' , post: post %>
+                <% post.tag_list.each do |tag| %>
+                <%= link_to tags_show_path(tag_name: tag) do %>
+                <span class="uk-badge"><%= tag %></span>
+                <% end %>
+                <% end %>
             </div>
         </div>
-
     </div>
-    <div class="uk-card-footer uk-background-muted uk-margin-remove">
-        <div class="uk-text-break">
-            <%= simple_format(post.content) %>
-        </div>
-        <div>
-            <% post.tag_list.each do |tag| %>
-            <%= link_to tags_show_path(tag_name: tag) do %>
-            <span class="uk-badge"><%= tag %></span>
-            <% end %>
-            <% end %>
-        </div>
-    </div>
+    <% end %>
 </div>
-<% end %>
+<%= paginate posts %>
+<%= render 'shared/infinitescroll' %>
 <% else %>
-<div class="uk-text-center">投稿が一つもないね</div>
+<div class="uk-text-center">投稿が一つもないです</div>
 <% end %>

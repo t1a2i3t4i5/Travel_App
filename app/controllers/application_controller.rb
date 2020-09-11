@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # ログイン後のページをタイムラインに変更
   def after_sign_in_path_for(_resource)
-    home_pages_index_path
+     posts_path
   end
 
   private

@@ -1,0 +1,7 @@
+<%= form_tag(searchs_index_path, method: :get, enforce_utf8: false) do %>
+<label class="uk-form-label" for="uk-select">検索対象</label>
+<%= select_tag(:option, options_for_select([["ユーザー", "1"],["投稿(内容)","2"],["投稿(行った場所)","3"]], :selected => @option), class:"uk-select") %>
+<label class="uk-form-label" for="uk-input">キーワード</label>
+<%= text_field_tag(:keyword, @keyword, placeholder: "何も入力しなければ全件表示", class:"uk-input") %>
+<%= submit_tag("Search", class:"uk-button uk-button-small") %>
+<% end %>

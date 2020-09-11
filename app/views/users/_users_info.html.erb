@@ -1,7 +1,7 @@
-<div class="uk-padding">
-    <% if users.any? %>
+<% if users.any? %>
+<div class="item-list">
     <% users.each do | user | %>
-    <article class="uk-comment">
+    <article class="uk-comment item-card">
         <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
                 <%= link_to user do %>
@@ -19,15 +19,13 @@
                 </ul>
             </div>
         </header>
-        <div class="uk-comment-body">
-            <p><%= user.introduction %></p>
-        </div>
     </article>
-    <hr class="uk-divider-icon">
-    <% end %>
-
-    <% else %>
-    <div class="uk-text-center">一人もいないね</div>
-
     <% end %>
 </div>
+
+<%= paginate users %>
+<%= render 'shared/infinitescroll' %>
+
+<% else %>
+<div class="uk-text-center">0人です</div>
+<% end %>

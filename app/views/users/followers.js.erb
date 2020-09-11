@@ -1,0 +1,4 @@
+$('#user_post').html("<div uk-spinner></div>");
+$('#user_likes_post').html("<div uk-spinner></div>");
+$('#user_followings').html("<div uk-spinner></div>");
+$('#user_followers').html("<%= escape_javascript(render partial: 'users/users_info', locals: {users: @followers_user}) %>");
