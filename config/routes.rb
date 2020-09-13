@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     root to: 'posts#index'
   end
 
-  get 'home_pages/index' => 'home_pages#index'
   get 'tags/show' => 'tags#show'
   get 'searchs/index' => 'searchs#index'
 

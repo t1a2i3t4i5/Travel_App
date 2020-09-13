@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
     @like = Like.new
     @follow_users = current_user.followings.all
-    @timeline_posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(visited_at: :desc)
+    @timeline_posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(created_at: :desc)
     @timeline_posts = @timeline_posts.page(params[:page]).per(10)
   end
 
@@ -73,6 +73,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:ken_id, :content, :tag_list, :image, :visited_at, :place)
+    params.require(:post).permit(:ken_id, :content, :tag_list, :image, :place)
   end
 end
