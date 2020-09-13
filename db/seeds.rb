@@ -26,17 +26,13 @@ if User.count < 10
 end
 
 if Post.count < 10
-  100.times do |_n|
-    content = "hogehoge"
+  100.times do |n|
     user_id = 1
     ken_id = 1
-    place = "hogehoge"
-    visited_at = "2020-08-25"
-    Post.create!(content: content,
+    Post.create!(content: n,
                  user_id: user_id,
                  ken_id: ken_id,
-                 place: place,
-                 image: open("./app/assets/images/default.jpg"),
-                 visited_at: visited_at)
+                 place: n,
+                 image: open("./app/assets/images/default.jpg"))
   end
 end

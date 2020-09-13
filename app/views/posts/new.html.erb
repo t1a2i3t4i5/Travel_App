@@ -68,8 +68,6 @@ $(function(){
 
           <%= text_field_tag 'post[tag_list]', @post.tag_list, placeholder: "タグを#区切りで入力", class:"uk-margin-small" %>
 
-          <%= f.date_field :visited_at, value:Date.today, required: true %>
-
           <%= f.file_field :image, class:"uk-margin-small", required: true %>
 
           <%= f.submit "post" , class:"uk-button button" %>
