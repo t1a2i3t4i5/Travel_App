@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  */
- @import "uikit.min.css";
+@import "uikit.min.css";
 
 footer {
   position: absolute;
@@ -19,24 +19,24 @@ footer {
   width: 100%;
   height: 40px;
   text-align: center;
-  background-color:#89c7de;
+  background-color: #89c7de;
 }
 
-.jaravlate{
+.jaravlate {
   font-family: "OCR A Extended";
-  font-size: 1000% ;
-  width: 100% ;
-  position:absolute;
-  top:0;
-  text-align: center ;
+  font-size: 1000%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  text-align: center;
 }
 
 /*ログインフォームのtopをずらしている */
 .uk-position-center {
-  top: 60%!important;
+  top: 60% !important;
 }
 
-#japanmap canvas{
+#japanmap canvas {
   position: absolute;
   left: 0;
   right: 0;
@@ -44,21 +44,21 @@ footer {
 }
 
 /*ユーザーのプロフィール画像(ユーザーページのでかい画像以外）*/
-.user_image{
-  width:50px;
-  height:50px;
+.user_image {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
-.user_info{
+.user_info {
   position: relative;
   margin: 5% 25% 0 25%;
   padding-bottom: 1em;
 }
 
-.show-post{
+.show-post {
   align-self: baseline;
   position: -webkit-sticky;
   position: sticky;
-  top :100px;
+  top: 100px;
 }

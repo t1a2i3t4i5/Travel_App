@@ -8,6 +8,4 @@
 
 <% end %>
 
-<span class="uk-text-middle">
-	<%= post.comments.count %>
-</span>
+<%= link_to post.comments.count, commented_users_post_path(post), remote: true, class: "uk-link-muted" %>

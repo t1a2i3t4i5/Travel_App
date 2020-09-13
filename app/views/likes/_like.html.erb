@@ -18,5 +18,4 @@
 
 <% end %>
 
-
-<a class="uk-button uk-button-text uk-text-middle" href="#likecount<%= post.id %>" uk-toggle><%= post.likes.count %></a>
+<%= link_to post.likes.count, liked_users_post_path(post), remote: true, class: "uk-link-muted" %>
