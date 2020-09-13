@@ -4,12 +4,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit create destroy]
 
   def index
+    return unless user_signed_in?
+
     @like = Like.new
-    if user_signed_in?
-      @follow_users = current_user.followings.all
-      @timeline_posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(visited_at: :desc)
-      @timeline_posts = @timeline_posts.page(params[:page]).per(10)
-    end
+    @follow_users = current_user.followings.all
+    @timeline_posts = Post.where(user_id: @follow_users).or(Post.where(user_id: current_user)).order(visited_at: :desc)
+    @timeline_posts = @timeline_posts.page(params[:page]).per(10)
   end
 
   def new_arrival
@@ -22,6 +22,16 @@ class PostsController < ApplicationController
     @popular_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
     @popular_posts = Kaminari.paginate_array(@popular_posts).page(params[:page]).per(10)
     render 'posts/index' unless request.xhr?
+  end
+
+  def liked_users
+    @post = Post.find_by(id: params[:id])
+    @users = @post.liked_users
+  end
+
+  def commented_users
+    @post = Post.find_by(id: params[:id])
+    @users = @post.commented_users.distinct
   end
 
   def new

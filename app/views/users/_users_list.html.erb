@@ -1,0 +1,27 @@
+<% if users.any? %>
+<div class="item-list">
+    <% users.each do | user | %>
+    <article class="uk-comment item-card">
+        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+                <%= link_to user do %>
+                <%= image_tag user.image.thumb.url , class:"user_image"%>
+                <% end %>
+            </div>
+            <div class="uk-width-expand">
+                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset">
+                        <%= link_to user.name, user, class:"uk-link-heading" %>
+                </h4>
+                <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                    <li>
+                        <%= render 'relationships/follow', user: user %>
+                    </li>
+                </ul>
+            </div>
+        </header>
+    </article>
+    <% end %>
+</div>
+<% else %>
+<div class="uk-text-center">0人です</div>
+<% end %>

@@ -1,0 +1,4 @@
+$('#users-list').html("<%= escape_javascript(render partial: 'users/users_list', locals: {users: @users}) %>");
+$('#users-list-modal .uk-modal-title').html("コメントしたユーザー")
+
+UIkit.modal("#users-list-modal").show();

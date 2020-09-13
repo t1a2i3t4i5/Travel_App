@@ -25,6 +25,10 @@ Rails.application.routes.draw do
     collection do
       get :new_arrival, :popular
     end
+    member do
+      # /posts/:id/ ...
+      get :liked_users, :commented_users
+    end
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create destroy]
   end

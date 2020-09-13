@@ -28,6 +28,7 @@ class Post < ApplicationRecord
 
   # comment機能の関連付け
   has_many :comments, dependent: :destroy
+  has_many :commented_users, through: :comments, source: :user
 
   # バリデーション
   def check_content
