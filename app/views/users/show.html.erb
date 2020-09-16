@@ -53,15 +53,15 @@ $(function(){
         <%= simple_format(@user.introduction) %>
     </div>
 
-    <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade">
+    <ul class="uk-child-width-expand" uk-tab="animation: uk-animation-fade; swiping: false; active: <%= active_tab_user %>" >
         <li><%= link_to "投稿#{@user.posts.count}", @user, remote: true %></li>
-        <li class=<%= action_name == 'likes_post' ? "uk-active" : "" %>>
+        <li>
             <%= link_to "いいね#{@user.likes.count}", liked_posts_user_path(@user), remote: true %>
         </li>
-        <li class=<%= action_name == 'followings_user' ? "uk-active" : "" %>>
+        <li>
             <%= link_to "フォロー#{@user.followings.count}", followings_user_path(@user),id: "followings_#{@user.id}", remote: true %>
         </li>
-        <li class=<%= action_name == 'user_followers_user' ? "uk-active" : "" %>>
+        <li>
             <%= link_to "フォロワー#{@user.followers.count}", followers_user_path(@user),id: "followers_#{@user.id}", remote: true %>
         </li>
         <li><a href="#">日本地図<%= visited_ken_count(@user) %>/47</a></li>
@@ -69,12 +69,16 @@ $(function(){
 
     <ul class="uk-switcher">
         <li id="user_post">
+            <% if @posts %>
             <%= render 'posts/post' , posts: @posts %>
+            <% else %>
+            <div uk-spinner></div>
+            <% end %>
         </li>
 
         <li id="user_likes_post">
-            <% if @likes_post %>
-            <%= render 'posts/post', posts: @likes_post %>
+            <% if @liked_posts %>
+            <%= render 'posts/post', posts: @liked_posts %>
             <% else %>
             <div uk-spinner></div>
             <% end %>
@@ -88,7 +92,7 @@ $(function(){
             <% end %>
         </li>
 
-        <li id="user_followers">
+        <li id="user_followers"%>>
             <% if @followers_user %>
             <%= render 'users/users_info', users: @followers_user %>
             <% else %>

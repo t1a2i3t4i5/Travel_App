@@ -1,4 +1,4 @@
-<nav class="uk-navbar-container" uk-navbar uk-sticky="bottom: #offset" style="background-color:#89c7de;">
+<!--<nav class="uk-navbar-container" uk-navbar uk-sticky="bottom: #offset" style="background-color:#89c7de;">
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
             <li class="uk-active">
@@ -77,6 +77,55 @@
             <li class="uk-active">
                 <a href="#search-modal" uk-toggle><span uk-icon="icon:search"></span></a>
             </li>
+        </ul>
+    </div>
+</nav>
+-->
+<nav class="uk-navbar-container uk-margin" uk-sticky="bottom: #offset" uk-navbar="mode: click"
+    style="background-color:#89c7de;">
+    <div class="uk-navbar-left">
+    <%= link_to "JARAVLATE", root_path, class:"uk-navbar-item uk-logo" %>
+        <ul class="uk-navbar-nav">
+            <li>
+                <a href="#"><span uk-icon="icon:home; ratio:1.5"></span></a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><%= link_to "タイムライン", posts_path %></li>
+                        <li><%= link_to "新着投稿", new_arrival_posts_path %></li>
+                        <li><%= link_to "人気投稿",  popular_posts_path %></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#search-modal" uk-toggle><span uk-icon="icon:search; ratio:1.5"></span></a></li>
+        </ul>
+    </div>
+
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+            <% if user_signed_in? %>
+            <li>
+                <a href="#"><span uk-icon="icon:user; ratio:1.5"></span></a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><%= link_to "新規投稿", new_post_path %></li>
+                        <li><%= link_to "マイページ", current_user%></li>
+                        <li><%= link_to "編集", edit_user_registration_path %></li>
+                        <li class="uk-nav-divider"></li>
+                        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                    </ul>
+                </div>
+            </li>
+            <% else %>
+            <li>
+                <a href="#"><span uk-icon="icon:user; ratio:1.5"></span></a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><%= link_to "ログイン", new_user_session_path %></li>
+                        <li><%= link_to "サインアップ", new_user_registration_path %></li>
+                    </ul>
+                </div>
+            </li>
+            <% end %>
         </ul>
     </div>
 </nav>
