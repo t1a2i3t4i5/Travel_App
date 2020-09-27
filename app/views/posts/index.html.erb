@@ -1,3 +1,4 @@
+<% provide(:title, "ホーム") %>
 <div class="uk-container uk-container-small uk-margin-bottom">
   <ul class="uk-child-width-expand uk-background-default uk-tab" uk-tab="animation: uk-animation-fade; swiping: false; active: <%= active_tab_post %>" >
     <li><%= link_to "タイムライン", posts_path, remote: true %></li>
